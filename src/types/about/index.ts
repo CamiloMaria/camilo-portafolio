@@ -1,3 +1,3 @@
-export type { Skill } from "./Skill";
-export type { Experience } from "./Experience";
-export type { Interest } from "./Interest";
+export type { Skill } from "./skill";
+export type { Experience } from "./experience";
+export type { Interest } from "./interest";
