@@ -100,7 +100,7 @@ export default function ContactSection() {
                         </p>
                         <div className="flex justify-center">
                             <motion.a
-                                href="mailto:camilo@example.com"
+                                href="mailto:camilo_jose08@hotmail.com"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
