@@ -6,7 +6,7 @@ import { ChevronDown, Menu, X } from "lucide-react"
 import Image from "next/image"
 import { CustomCursor, TypewriterEffect, BackgroundElements, LoadingAnimation } from "@/components/hero"
 
-export default function Hero() {
+export default function HeroSection() {
     const [isLoading, setIsLoading] = useState(true)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const heroRef = useRef<HTMLDivElement>(null)
