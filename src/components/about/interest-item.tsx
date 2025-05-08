@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { motion } from "framer-motion"
-import type { Interest } from '../../sections/about-me' // Assuming Interest type is exported
+import { Interest } from "@/types/about";
 
 // Interest item component
 const InterestItem = ({ interest, index }: { interest: Interest; index: number }) => {

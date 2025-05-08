@@ -1,13 +1,12 @@
-import AboutMe from "@/sections/about-me";
-import Hero from "@/sections/hero";
-import ProjectsSection from "@/sections/project";
+import { Hero, AboutMeSection, ProjectsSection, ContactSection } from "@/sections";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
-      <AboutMe />
+      <AboutMeSection />
       <ProjectsSection />
+      <ContactSection />
     </main>
   );
 }

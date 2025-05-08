@@ -7,7 +7,7 @@ import { Download, ExternalLink } from "lucide-react"
 import { SkillBar, TimelineItem, InterestItem } from "@/components/about"
 import { skills, experiences, interests } from "@/consts/about"
 
-export default function AboutMe() {
+export default function AboutMeSection() {
     const sectionRef = useRef<HTMLDivElement>(null)
     const bioRef = useRef<HTMLDivElement>(null)
     const [activeTab, setActiveTab] = useState<"skills" | "experience" | "education">("skills")
