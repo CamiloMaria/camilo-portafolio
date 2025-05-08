@@ -4,10 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ChevronDown, Menu, X } from "lucide-react"
 import Image from "next/image"
-import CustomCursor from "../components/custom-cursor"
-import TypewriterEffect from "../components/typewriter-effect"
-import BackgroundElements from "../components/background-elements"
-import LoadingAnimation from "../components/loading-animation"
+import { CustomCursor, TypewriterEffect, BackgroundElements, LoadingAnimation } from "@/components/hero"
 
 export default function Hero() {
     const [isLoading, setIsLoading] = useState(true)
