@@ -57,7 +57,7 @@ const SocialCard = ({ item }: { item: ContactItem }) => {
                         rel="noopener noreferrer"
                         className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${item.color} text-white font-medium transition-all duration-300 ${item.hoverColor} hover:scale-105`}
                     >
-                        Connect <ExternalLink className="w-4 h-4" />
+                        Contactar <ExternalLink className="w-4 h-4" />
                     </a>
                 </div>
             </div>

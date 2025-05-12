@@ -65,14 +65,14 @@ export default function ContactSection() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Connect{" "}
+                            Contactar{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
-                                With Me
+                                Conmigo
                             </span>
                         </h2>
                         <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-                            Feel free to reach out through any of these platforms. I&apos;m always open to discussing new projects,
-                            creative ideas, or opportunities to be part of your vision.
+                            No dudes en contactarme a través de cualquiera de estas plataformas. Siempre estoy abierto a discutir nuevos proyectos,
+                            ideas creativas u oportunidades para ser parte de tu visión.
                         </p>
                     </motion.div>
                 </div>
@@ -95,8 +95,8 @@ export default function ContactSection() {
                     <div className="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/30 shadow-xl max-w-3xl mx-auto">
                         <h3 className="text-2xl font-bold text-white mb-4">Let&apos;s Create Something Amazing Together</h3>
                         <p className="text-gray-300 mb-6">
-                            Whether you have a question, project inquiry, or just want to say hello, I&apos;ll try my best to get back to
-                            you as soon as possible!
+                            Ya sea que tengas una pregunta, consulta sobre un proyecto o simplemente quieras saludar, ¡haré todo lo posible por responderte
+                            lo antes posible!
                         </p>
                         <div className="flex justify-center">
                             <motion.a
@@ -106,7 +106,7 @@ export default function ContactSection() {
                                 className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                             >
                                 <Mail className="w-5 h-5" />
-                                Send Direct Email
+                                Enviar Email Directo
                             </motion.a>
                         </div>
                     </div>
@@ -114,7 +114,7 @@ export default function ContactSection() {
 
                 {/* Response Time Note */}
                 <div className="mt-12 text-center text-gray-400">
-                    <p>Usually, I respond within 24 hours</p>
+                    <p>Usualmente, respondo dentro de 24 horas</p>
                 </div>
             </motion.div>
         </section>
