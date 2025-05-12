@@ -1,9 +1,10 @@
 import { Copy, Check, ExternalLink } from "lucide-react"
-import { contactData } from "@/consts/contact"
+import { ContactItem } from "@/types/contact"
 import { motion } from "framer-motion"
 import { useState } from "react"
+import Image from "next/image"
 
-const SocialCard = ({ item }: { item: (typeof contactData)[0] }) => {
+const SocialCard = ({ item }: { item: ContactItem }) => {
     const [copied, setCopied] = useState(false)
 
     const copyToClipboard = (text: string) => {
@@ -22,7 +23,19 @@ const SocialCard = ({ item }: { item: (typeof contactData)[0] }) => {
         >
             <div className="p-6">
                 <div className="flex items-center mb-4">
-                    <div className={`p-3 rounded-lg ${item.color} text-white mr-4`}>{item.icon}</div>
+                    <div className={`p-3 rounded-lg ${item.color} text-white mr-4`}>
+                        {item.useImage ? (
+                            <Image
+                                src={item.icon as string}
+                                alt={`${item.name} icon`}
+                                width={20}
+                                height={20}
+                                className="w-5 h-5 brightness-0 invert"
+                            />
+                        ) : (
+                            item.icon
+                        )}
+                    </div>
                     <div>
                         <h3 className="text-white font-bold text-lg">{item.name}</h3>
                         <p className="text-gray-400 text-sm flex items-center gap-2">

@@ -1,10 +1,12 @@
-import { Linkedin, Instagram, Github, MessageCircle, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { ContactItem } from "@/types/contact";
 
 // Social media and contact data
-const contactData = [
+const contactData: ContactItem[] = [
     {
         name: "LinkedIn",
-        icon: <Linkedin className="w-5 h-5" />,
+        icon: "/socials/linkedin.svg",
+        useImage: true,
         url: "https://linkedin.com/in/camilo-maria",
         username: "camilo-maria",
         color: "bg-[#0077B5]",
@@ -13,7 +15,8 @@ const contactData = [
     },
     {
         name: "Instagram",
-        icon: <Instagram className="w-5 h-5" />,
+        icon: "/socials/instagram.svg",
+        useImage: true,
         url: "https://instagram.com/camilo._.jose",
         username: "@camilo._.jose",
         color: "bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]",
@@ -22,7 +25,8 @@ const contactData = [
     },
     {
         name: "GitHub",
-        icon: <Github className="w-5 h-5" />,
+        icon: "/socials/github.svg",
+        useImage: true,
         url: "https://github.com/CamiloMaria",
         username: "CamiloMaria",
         color: "bg-[#333333]",
@@ -31,7 +35,8 @@ const contactData = [
     },
     {
         name: "WhatsApp USA",
-        icon: <MessageCircle className="w-5 h-5" />,
+        icon: "/socials/whatsapp.svg",
+        useImage: true,
         url: "https://wa.me/14013281867",
         username: "+1 (401) 328-1867 (SMS & Calls)",
         color: "bg-[#25D366]",
@@ -40,7 +45,8 @@ const contactData = [
     },
     {
         name: "WhatsApp RD",
-        icon: <MessageCircle className="w-5 h-5" />,
+        icon: "/socials/whatsapp.svg",
+        useImage: true,
         url: "https://wa.me/18096028624",
         username: "+1 (809) 602-8624 (SMS & Calls)",
         color: "bg-[#25D366]",
