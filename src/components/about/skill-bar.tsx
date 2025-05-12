@@ -3,7 +3,7 @@
 import type React from "react"
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import type { Skill } from '../../sections/about-me' // Assuming Skill type is exported from about-me.tsx
+import { Skill } from "@/types/about"
 
 // Skill bar component
 const SkillBar = ({ skill, index }: { skill: Skill; index: number }) => {
