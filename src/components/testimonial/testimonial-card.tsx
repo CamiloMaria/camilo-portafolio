@@ -17,53 +17,46 @@ const TestimonialCard = ({
     const highlightText = (text: string, highlight: string) => {
         if (!highlight) return text
 
-        // Ensure we're not breaking at punctuation
-        const cleanHighlight = highlight.replace(/([.,!?;:])\s*$/, "") // Remove trailing punctuation
-        const pattern = new RegExp(`(${cleanHighlight}[.,!?;:]?)`, "gi")
-        const parts = text.split(pattern)
-
+        const parts = text.split(new RegExp(`(${highlight})`, "gi"))
         return (
             <>
-                {parts.map((part, i) => {
-                    // Check if this part matches our highlight pattern (including possible punctuation)
-                    if (part.toLowerCase().includes(cleanHighlight.toLowerCase())) {
-                        return (
+                {parts.map((part, i) =>
+                    part.toLowerCase() === highlight.toLowerCase() ? (
+                        <motion.span
+                            key={i}
+                            className="font-bold relative inline-block"
+                            initial={{ color: "rgb(209, 213, 219)" }}
+                            animate={{
+                                color: ["rgb(209, 213, 219)", "rgb(255, 255, 255)", "rgb(209, 213, 219)"],
+                                textShadow: [
+                                    "0 0 0px rgba(168, 85, 247, 0)",
+                                    "0 0 8px rgba(168, 85, 247, 0.5)",
+                                    "0 0 0px rgba(168, 85, 247, 0)",
+                                ],
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Number.POSITIVE_INFINITY,
+                                repeatType: "reverse",
+                                ease: "easeInOut",
+                            }}
+                        >
                             <motion.span
-                                key={i}
-                                className="font-bold relative inline-block whitespace-normal"
-                                initial={{ color: "rgb(209, 213, 219)" }}
-                                animate={{
-                                    color: ["rgb(209, 213, 219)", "rgb(255, 255, 255)", "rgb(209, 213, 219)"],
-                                    textShadow: [
-                                        "0 0 0px rgba(168, 85, 247, 0)",
-                                        "0 0 8px rgba(168, 85, 247, 0.5)",
-                                        "0 0 0px rgba(168, 85, 247, 0)",
-                                    ],
-                                }}
+                                className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                                initial={{ width: "0%" }}
+                                animate={{ width: "100%" }}
                                 transition={{
-                                    duration: 3,
-                                    repeat: Number.POSITIVE_INFINITY,
-                                    repeatType: "reverse",
-                                    ease: "easeInOut",
+                                    duration: 1.5,
+                                    delay: 0.5,
+                                    ease: "easeOut",
                                 }}
-                            >
-                                {part}
-                                <motion.span
-                                    className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                                    initial={{ width: "0%" }}
-                                    animate={{ width: "100%" }}
-                                    transition={{
-                                        duration: 1.5,
-                                        delay: 0.5,
-                                        ease: "easeOut",
-                                    }}
-                                />
-                            </motion.span>
-                        )
-                    } else {
-                        return <span key={i}>{part}</span>
-                    }
-                })}
+                            />
+                            {part}
+                        </motion.span>
+                    ) : (
+                        <span key={i}>{part}</span>
+                    ),
+                )}
             </>
         )
     }
@@ -75,9 +68,31 @@ const TestimonialCard = ({
                 opacity: isActive ? 1 : 0.5,
                 scale: isActive ? 1 : 0.9,
                 y: isActive ? 0 : 20,
+                boxShadow: isActive
+                    ? [
+                        "0 0 0 rgba(168, 85, 247, 0)",
+                        "0 0 20px rgba(168, 85, 247, 0.3)",
+                        "0 0 0 rgba(168, 85, 247, 0)",
+                    ]
+                    : "none"
             }}
-            transition={{ duration: 0.5 }}
-            className={`bg-gray-800/50 backdrop-blur-sm rounded-xl border ${isActive ? "border-purple-500/30 shadow-lg shadow-purple-500/10" : "border-gray-700/50"
+            transition={{
+                duration: 0.5,
+                boxShadow: {
+                    duration: 2,
+                    repeat: isActive ? Number.POSITIVE_INFINITY : 0,
+                    repeatType: "reverse",
+                }
+            }}
+            whileHover={{
+                scale: isActive ? 1 : 0.95, // No escalar si está activa
+                boxShadow: isActive
+                    ? "0 0 25px rgba(168, 85, 247, 0.3)"
+                    : "0 0 15px rgba(168, 85, 247, 0.2)"
+            }}
+            className={`bg-gray-800/50 backdrop-blur-sm rounded-xl border ${isActive
+                ? "border-purple-500/50 shadow-lg shadow-purple-500/20"
+                : "border-gray-700/50"
                 } p-6 md:p-8 transition-all duration-300 h-full relative overflow-hidden`}
         >
             {/* Pattern background */}
@@ -135,6 +150,15 @@ const TestimonialCard = ({
                 <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white text-xs font-bold">
                     Featured
                 </div>
+            )}
+
+            {isActive && (
+                <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl z-0"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                />
             )}
         </motion.div>
     )

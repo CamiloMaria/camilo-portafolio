@@ -4,7 +4,7 @@ import type React from "react"
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Calendar, MapPin, Briefcase, GraduationCap, Award } from "lucide-react"
-import type { Experience } from '../../sections/about-me' // Assuming Experience type is exported
+import { Experience } from "@/types/about"
 
 // Timeline item component
 const TimelineItem = ({ experience, index }: { experience: Experience; index: number }) => {

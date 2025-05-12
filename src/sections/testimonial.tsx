@@ -8,6 +8,7 @@ import { TestimonialCard, FeaturedTestimonial } from "@/components/testimonial"
 
 export default function TestimonialsSection() {
     const [activeIndex, setActiveIndex] = useState(0)
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
     const sectionRef = useRef<HTMLDivElement>(null)
     const carouselRef = useRef<HTMLDivElement>(null)
 
@@ -28,14 +29,32 @@ export default function TestimonialsSection() {
 
     const nextTestimonial = () => {
         setActiveIndex((prev) => (prev + 1) % carouselTestimonials.length)
+        setSelectedIndex(null)
     }
 
     const prevTestimonial = () => {
         setActiveIndex((prev) => (prev - 1 + carouselTestimonials.length) % carouselTestimonials.length)
+        setSelectedIndex(null)
     }
 
     const goToTestimonial = (index: number) => {
         setActiveIndex(index)
+        setSelectedIndex(null)
+    }
+
+    const handleCardClick = (index: number) => {
+        setSelectedIndex(index === selectedIndex ? null : index)
+    }
+
+    // Function to determine if a card is active
+    const isCardActive = (index: number) => {
+        // If a card is selected, only it should be active
+        if (selectedIndex !== null) {
+            return index === selectedIndex
+        }
+
+        // Otherwise only highlight the current active card
+        return index === activeIndex
     }
 
     return (
@@ -113,16 +132,17 @@ export default function TestimonialsSection() {
                     <div className="overflow-hidden">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {carouselTestimonials.map((testimonial, index) => (
-                                <TestimonialCard
+                                <div
                                     key={testimonial.id}
-                                    testimonial={testimonial}
-                                    index={index}
-                                    isActive={
-                                        index === activeIndex ||
-                                        index === (activeIndex + 1) % carouselTestimonials.length ||
-                                        index === (activeIndex + 2) % carouselTestimonials.length
-                                    }
-                                />
+                                    onClick={() => handleCardClick(index)}
+                                    className="cursor-pointer overflow-hidden"
+                                >
+                                    <TestimonialCard
+                                        testimonial={testimonial}
+                                        index={index}
+                                        isActive={isCardActive(index)}
+                                    />
+                                </div>
                             ))}
                         </div>
                     </div>
