@@ -3,17 +3,17 @@ import { Testimonial } from "@/types/testimonial";
 const testimonials: Testimonial[] = [
     {
         id: 1,
-        name: "Sarah Johnson",
+        name: "Nurys Castillo",
         position: "CEO",
-        company: "TechVision Inc.",
+        company: "C&C Technology Supply",
         category: "tech",
         rating: 5,
-        text: "Working with Camilo was an absolute pleasure. His technical expertise and creative approach to problem-solving resulted in a product that exceeded our expectations. He was responsive, professional, and delivered on time.",
-        highlight: "exceeded our expectations",
+        text: "¡Camilo es una joya! No solo trabaja rápido y con una eficiencia que sorprende, sino que también tiene un corazón enorme. En todos mis años en el mundo profesional, no he conocido a alguien con tanta disposición, calidez humana y ganas de ayudar. Siempre llega con una sonrisa, anima a todos a su alrededor, y hace que cualquier proyecto fluya con una energía increíble. Haberlo tenido en nuestro equipo ha sido una verdadera bendición.",
+        highlight: "haberlo tenido en nuestro equipo ha sido una verdadera bendición",
         color: "from-purple-500 to-indigo-600",
         accentColor: "rgba(139, 92, 246, 0.8)",
-        shape: "hexagon",
         featured: true,
+        country: "República Dominicana"
     },
     {
         id: 2,
@@ -26,7 +26,6 @@ const testimonials: Testimonial[] = [
         highlight: "attention to detail",
         color: "from-pink-500 to-rose-600",
         accentColor: "rgba(236, 72, 153, 0.8)",
-        shape: "circle",
         featured: false,
     },
     {
@@ -40,7 +39,6 @@ const testimonials: Testimonial[] = [
         highlight: "conversion rates increased by 40%",
         color: "from-amber-500 to-orange-600",
         accentColor: "rgba(245, 158, 11, 0.8)",
-        shape: "wave",
         featured: false,
     },
     {
@@ -54,7 +52,6 @@ const testimonials: Testimonial[] = [
         highlight: "helped us secure our next round of funding",
         color: "from-emerald-500 to-teal-600",
         accentColor: "rgba(16, 185, 129, 0.8)",
-        shape: "triangle",
         featured: false,
     },
     {
@@ -68,7 +65,6 @@ const testimonials: Testimonial[] = [
         highlight: "translate design concepts into flawless code",
         color: "from-blue-500 to-cyan-600",
         accentColor: "rgba(59, 130, 246, 0.8)",
-        shape: "square",
         featured: false,
     },
     {
@@ -82,7 +78,6 @@ const testimonials: Testimonial[] = [
         highlight: "completely transformed our online business",
         color: "from-violet-500 to-purple-600",
         accentColor: "rgba(139, 92, 246, 0.8)",
-        shape: "hexagon",
         featured: false,
     },
 ]

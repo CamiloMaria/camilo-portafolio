@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Testimonial } from "@/types/testimonial"
-import { PatternBackground, QuoteMark, RatingStars, ShapeElement } from "."
+import { PatternBackground, QuoteMark } from "."
+import { getInitials } from "@/lib/utils"
 
 // Testimonial card component
 const TestimonialCard = ({
@@ -16,46 +17,53 @@ const TestimonialCard = ({
     const highlightText = (text: string, highlight: string) => {
         if (!highlight) return text
 
-        const parts = text.split(new RegExp(`(${highlight})`, "gi"))
+        // Ensure we're not breaking at punctuation
+        const cleanHighlight = highlight.replace(/([.,!?;:])\s*$/, "") // Remove trailing punctuation
+        const pattern = new RegExp(`(${cleanHighlight}[.,!?;:]?)`, "gi")
+        const parts = text.split(pattern)
+
         return (
             <>
-                {parts.map((part, i) =>
-                    part.toLowerCase() === highlight.toLowerCase() ? (
-                        <motion.span
-                            key={i}
-                            className="font-bold relative inline-block"
-                            initial={{ color: "rgb(209, 213, 219)" }}
-                            animate={{
-                                color: ["rgb(209, 213, 219)", "rgb(255, 255, 255)", "rgb(209, 213, 219)"],
-                                textShadow: [
-                                    "0 0 0px rgba(168, 85, 247, 0)",
-                                    "0 0 8px rgba(168, 85, 247, 0.5)",
-                                    "0 0 0px rgba(168, 85, 247, 0)",
-                                ],
-                            }}
-                            transition={{
-                                duration: 3,
-                                repeat: Number.POSITIVE_INFINITY,
-                                repeatType: "reverse",
-                                ease: "easeInOut",
-                            }}
-                        >
+                {parts.map((part, i) => {
+                    // Check if this part matches our highlight pattern (including possible punctuation)
+                    if (part.toLowerCase().includes(cleanHighlight.toLowerCase())) {
+                        return (
                             <motion.span
-                                className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                                initial={{ width: "0%" }}
-                                animate={{ width: "100%" }}
-                                transition={{
-                                    duration: 1.5,
-                                    delay: 0.5,
-                                    ease: "easeOut",
+                                key={i}
+                                className="font-bold relative inline-block whitespace-normal"
+                                initial={{ color: "rgb(209, 213, 219)" }}
+                                animate={{
+                                    color: ["rgb(209, 213, 219)", "rgb(255, 255, 255)", "rgb(209, 213, 219)"],
+                                    textShadow: [
+                                        "0 0 0px rgba(168, 85, 247, 0)",
+                                        "0 0 8px rgba(168, 85, 247, 0.5)",
+                                        "0 0 0px rgba(168, 85, 247, 0)",
+                                    ],
                                 }}
-                            />
-                            {part}
-                        </motion.span>
-                    ) : (
-                        <span key={i}>{part}</span>
-                    ),
-                )}
+                                transition={{
+                                    duration: 3,
+                                    repeat: Number.POSITIVE_INFINITY,
+                                    repeatType: "reverse",
+                                    ease: "easeInOut",
+                                }}
+                            >
+                                {part}
+                                <motion.span
+                                    className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
+                                    initial={{ width: "0%" }}
+                                    animate={{ width: "100%" }}
+                                    transition={{
+                                        duration: 1.5,
+                                        delay: 0.5,
+                                        ease: "easeOut",
+                                    }}
+                                />
+                            </motion.span>
+                        )
+                    } else {
+                        return <span key={i}>{part}</span>
+                    }
+                })}
             </>
         )
     }
@@ -83,9 +91,14 @@ const TestimonialCard = ({
                 className={`absolute -bottom-10 -left-10 w-24 h-24 rounded-full bg-gradient-to-br ${testimonial.color} opacity-10 blur-xl`}
             />
 
-            {/* Abstract shape element */}
-            <div className="absolute top-6 right-6 w-16 h-16 opacity-20">
-                <ShapeElement shape={testimonial.shape} color={testimonial.accentColor} className="w-full h-full" />
+            {/* Client name as large typographic element */}
+            <div className="relative z-10 text-center">
+                <h3
+                    className={`text-6xl font-extrabold bg-gradient-to-r ${testimonial.color} text-transparent bg-clip-text`}
+                >
+                    {getInitials(testimonial.name)}
+                </h3>
+                <div className={`h-1 w-16 mx-auto mt-2 rounded-full bg-gradient-to-r ${testimonial.color}`}></div>
             </div>
 
             {/* Quote opening */}
@@ -109,9 +122,11 @@ const TestimonialCard = ({
                         <p className={`bg-gradient-to-r ${testimonial.color} text-transparent bg-clip-text font-medium`}>
                             {testimonial.position}, {testimonial.company}
                         </p>
-                    </div>
-                    <div>
-                        <RatingStars rating={testimonial.rating} />
+                        {testimonial.country && (
+                            <p className="text-gray-400 text-sm mt-1">
+                                {testimonial.country}
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

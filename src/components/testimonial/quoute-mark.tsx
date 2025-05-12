@@ -6,7 +6,7 @@ const QuoteMark = ({ color, isClosing = false }: { color: string; isClosing?: bo
             viewBox="0 0 40 40"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ transform: isClosing ? "rotate(180deg)" : "none" }}
+            style={{ transform: isClosing ? "none" : "rotate(180deg)" }}
             className={isClosing ? "ml-auto" : ""}
         >
             <path

@@ -1,4 +1,3 @@
-
 // Testimonial type definition
 export interface Testimonial {
     id: number
@@ -11,6 +10,6 @@ export interface Testimonial {
     highlight: string
     color: string
     accentColor: string
-    shape: "circle" | "square" | "triangle" | "hexagon" | "wave"
     featured?: boolean
+    country?: string
 }
