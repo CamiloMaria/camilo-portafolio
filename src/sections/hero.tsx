@@ -28,11 +28,11 @@ export default function HeroSection() {
     }
 
     const navItems = [
-        { key: "home", href: "#home" },
-        { key: "about", href: "#about" },
-        { key: "projects", href: "#projects" },
-        { key: "skills", href: "#skills" },
-        { key: "contact", href: "#contact" },
+        { key: "Home", href: "#home" },
+        { key: "About", href: "#about" },
+        { key: "Projects", href: "#projects" },
+        { key: "Testimonials", href: "#testimonials" },
+        { key: "Contact", href: "#contact" },
     ]
 
     return (
@@ -43,14 +43,9 @@ export default function HeroSection() {
 
                 {/* Navigation */}
                 <nav className="absolute top-0 left-0 w-full z-50 px-6 py-8 flex justify-between items-center">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-white text-xl font-bold"
-                    >
-                        CJM
-                    </motion.div>
+                    <span className="bg-gradient-to-r text-xl font-bold from-purple-400 to-pink-600 text-transparent bg-clip-text">
+                        Portfolio
+                    </span>
 
                     <div className="flex items-center gap-4">
                         {/* Language Selector */}
@@ -124,7 +119,7 @@ export default function HeroSection() {
                             className="relative mx-auto mb-8 w-40 h-40 rounded-full overflow-hidden border-4 border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.5)]"
                         >
                             <Image
-                                src="/placeholder.svg?height=160&width=160"
+                                src="/images/camilo-npc.webp"
                                 alt="Camilo José María Castillo"
                                 width={160}
                                 height={160}

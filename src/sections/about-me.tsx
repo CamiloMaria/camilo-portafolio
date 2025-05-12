@@ -102,10 +102,12 @@ export default function AboutMeSection() {
                         <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 mix-blend-overlay rounded-2xl z-10" />
                             <Image
-                                src="/placeholder.svg?height=320&width=320"
+                                src="/images/profile.webp"
                                 alt="Camilo José María Castillo"
                                 fill
-                                className="object-cover"
+                                className="object-cover object-center"
+                                sizes="(max-width: 768px) 256px, 320px"
+                                priority
                             />
                             <div className="absolute inset-0 border-4 border-purple-500/30 rounded-2xl z-20" />
 
