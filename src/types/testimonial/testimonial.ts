@@ -4,7 +4,7 @@ export interface Testimonial {
     name: string
     position: string
     company: string
-    category: "tech" | "design" | "ecommerce" | "marketing" | "startup"
+    category: "tech" | "design" | "ecommerce" | "marketing" | "startup" | "consulting"
     rating: number
     text: string
     highlight: string
