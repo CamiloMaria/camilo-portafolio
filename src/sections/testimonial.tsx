@@ -104,13 +104,13 @@ export default function TestimonialsSection() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Client{" "}
+                            Testimonios de{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
-                                Testimonials
+                                Clientes
                             </span>
                         </h2>
                         <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-                            Don&apos;t just take my word for it. Here&apos;s what my clients have to say about working with me.
+                            No solo tomes mi palabra. Esto es lo que mis clientes tienen que decir sobre trabajar conmigo.
                         </p>
                     </motion.div>
                 </div>
@@ -192,9 +192,9 @@ export default function TestimonialsSection() {
                     className="mt-16 text-center"
                 >
                     <div className="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/30 shadow-xl max-w-3xl mx-auto">
-                        <h3 className="text-2xl font-bold text-white mb-4">Ready to Join Our Success Stories?</h3>
+                        <h3 className="text-2xl font-bold text-white mb-4">¿Listo para unirte a nuestras historias de éxito?</h3>
                         <p className="text-gray-300 mb-6">
-                            Let&apos;s create something amazing that will have you raving about the results too.
+                            Creemos juntos algo increíble que te haga sentir orgulloso de los resultados.
                         </p>
                         <div className="flex justify-center">
                             <motion.a
@@ -203,7 +203,7 @@ export default function TestimonialsSection() {
                                 whileTap={{ scale: 0.95 }}
                                 className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                             >
-                                Start Your Project
+                                Iniciar Tu Proyecto
                             </motion.a>
                         </div>
                     </div>
