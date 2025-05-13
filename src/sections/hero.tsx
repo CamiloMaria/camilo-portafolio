@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { ChevronDown, Download, Menu, X } from "lucide-react"
 import Image from "next/image"
 import { CustomCursor, TypewriterEffect, BackgroundElements, LoadingAnimation } from "@/components/hero"
 
@@ -153,11 +153,25 @@ export default function HeroSection() {
                             transition={{ duration: 0.5, delay: 1.8 }}
                             className="flex flex-col sm:flex-row gap-4 justify-center"
                         >
-                            <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] focus:outline-none">
+                            <a
+                                href="#projects"
+                                className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] focus:outline-none text-center"
+                            >
                                 Ver proyectos
-                            </button>
-                            <a href="#contacto" className="px-8 py-3 bg-transparent border-2 border-purple-500 rounded-full text-white font-medium transform transition-all duration-300 hover:bg-purple-900/30 hover:scale-105 focus:outline-none text-center">
-                                contáctame
+                            </a>
+                            <a
+                                href="#contact"
+                                className="px-8 py-3 bg-transparent border-2 border-purple-500 rounded-full text-white font-medium transform transition-all duration-300 hover:bg-purple-900/30 hover:scale-105 focus:outline-none text-center"
+                            >
+                                Contáctame
+                            </a>
+                            <a
+                                href="/resume/resume.pdf"
+                                download
+                                className="px-8 py-3 bg-gray-800/80 backdrop-blur-sm border-2 border-gray-700/50 rounded-full text-white font-medium transform transition-all duration-300 hover:bg-gray-700/80 hover:scale-105 focus:outline-none flex items-center justify-center gap-2 sm:justify-start"
+                            >
+                                <Download className="w-4 h-4" />
+                                <span>Descargar CV</span>
                             </a>
                         </motion.div>
                     </motion.div>

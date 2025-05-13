@@ -239,7 +239,8 @@ export default function AboutSection() {
                                 {/* CTA Buttons */}
                                 <div className="flex flex-wrap gap-4 mt-8">
                                     <motion.a
-                                        href="#"
+                                        href="/resume/resume.pdf"
+                                        download
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
