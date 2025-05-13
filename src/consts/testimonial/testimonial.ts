@@ -18,7 +18,7 @@ const testimonials: Testimonial[] = [
     {
         id: 2,
         name: "Bernardo Valdez",
-        position: "Supervisor y Programador Principal de E-commerce",
+        position: "Supervisor de E-commerce",
         company: "Plaza Lama",
         category: "ecommerce",
         rating: 5,
@@ -56,32 +56,6 @@ const testimonials: Testimonial[] = [
         accentColor: "rgba(16, 185, 129, 0.8)",
         featured: false,
         country: "Colombia"
-    },
-    {
-        id: 5,
-        name: "Olivia Martinez",
-        position: "UX Director",
-        company: "Design Forward",
-        category: "design",
-        rating: 5,
-        text: "I've worked with many developers, but Camilo stands out for his ability to translate design concepts into flawless code. His understanding of both design principles and technical implementation makes him a rare and valuable talent.",
-        highlight: "translate design concepts into flawless code",
-        color: "from-blue-500 to-cyan-600",
-        accentColor: "rgba(59, 130, 246, 0.8)",
-        featured: false,
-    },
-    {
-        id: 6,
-        name: "Thomas Wright",
-        position: "E-Commerce Manager",
-        company: "Retail Innovations",
-        category: "ecommerce",
-        rating: 5,
-        text: "The custom e-commerce solution Camilo built for us has completely transformed our online business. The intuitive interface and seamless checkout process have significantly reduced cart abandonment and improved customer satisfaction.",
-        highlight: "completely transformed our online business",
-        color: "from-violet-500 to-purple-600",
-        accentColor: "rgba(139, 92, 246, 0.8)",
-        featured: false,
     },
 ]
 

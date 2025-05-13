@@ -59,7 +59,7 @@ export default function TestimonialsSection() {
 
     return (
         <section
-            id="testimonials"
+            id="testimonios"
             ref={sectionRef}
             className="py-20 px-6 md:px-10 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden"
         >
@@ -198,7 +198,7 @@ export default function TestimonialsSection() {
                         </p>
                         <div className="flex justify-center">
                             <motion.a
-                                href="#contact"
+                                href="#contacto"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"

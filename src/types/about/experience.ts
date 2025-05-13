@@ -5,5 +5,8 @@ export interface Experience {
     period: string
     description: string
     type: "work" | "education" | "award"
+    achievements?: string[]
     current?: boolean
+    logo?: string
+    technologies?: string[]
 }

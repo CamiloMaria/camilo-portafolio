@@ -28,11 +28,10 @@ export default function HeroSection() {
     }
 
     const navItems = [
-        { key: "Home", href: "#home" },
-        { key: "About", href: "#about" },
-        { key: "Projects", href: "#projects" },
-        { key: "Testimonials", href: "#testimonials" },
-        { key: "Contact", href: "#contact" },
+        { key: "Sobre mí", href: "#sobre-mi" },
+        { key: "Proyectos", href: "#proyectos" },
+        { key: "Testimonios", href: "#testimonios" },
+        { key: "Contacto", href: "#contacto" },
     ]
 
     return (
@@ -144,7 +143,7 @@ export default function HeroSection() {
                             transition={{ duration: 0.5, delay: 1.5 }}
                             className="text-gray-400 mb-8"
                         >
-                            22 years old
+                            22 años de edad
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -157,9 +156,9 @@ export default function HeroSection() {
                             <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] focus:outline-none">
                                 Ver proyectos
                             </button>
-                            <button className="px-8 py-3 bg-transparent border-2 border-purple-500 rounded-full text-white font-medium transform transition-all duration-300 hover:bg-purple-900/30 hover:scale-105 focus:outline-none">
-                                Contactame
-                            </button>
+                            <a href="#contacto" className="px-8 py-3 bg-transparent border-2 border-purple-500 rounded-full text-white font-medium transform transition-all duration-300 hover:bg-purple-900/30 hover:scale-105 focus:outline-none text-center">
+                                contáctame
+                            </a>
                         </motion.div>
                     </motion.div>
 
@@ -175,7 +174,7 @@ export default function HeroSection() {
                             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
                             className="flex flex-col items-center"
                         >
-                            <span className="text-gray-400 text-sm mb-2">Scroll down</span>
+                            <span className="text-gray-400 text-sm mb-2">Desplázate hacia abajo</span>
                             <ChevronDown className="w-6 h-6 text-purple-500" />
                         </motion.div>
                     </motion.div>

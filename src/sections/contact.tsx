@@ -20,7 +20,7 @@ export default function ContactSection() {
 
     return (
         <section
-            id="contact"
+            id="contacto"
             ref={sectionRef}
             className="py-20 px-6 md:px-10 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden"
         >
@@ -93,7 +93,7 @@ export default function ContactSection() {
                     className="mt-16 text-center"
                 >
                     <div className="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/30 shadow-xl max-w-3xl mx-auto">
-                        <h3 className="text-2xl font-bold text-white mb-4">Let&apos;s Create Something Amazing Together</h3>
+                        <h3 className="text-2xl font-bold text-white mb-4">Crea algo increíble juntos</h3>
                         <p className="text-gray-300 mb-6">
                             Ya sea que tengas una pregunta, consulta sobre un proyecto o simplemente quieras saludar, ¡haré todo lo posible por responderte
                             lo antes posible!

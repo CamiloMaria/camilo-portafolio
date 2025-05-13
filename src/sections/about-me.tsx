@@ -1,19 +1,30 @@
 "use client"
 
 import { useRef, useState } from "react"
-import Image from "next/image"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
-import { Download, ExternalLink } from "lucide-react"
-import { SkillBar, TimelineItem, InterestItem } from "@/components/about"
-import { skills, experiences, interests } from "@/consts/about"
+import {
+    Briefcase,
+    GraduationCap,
+    Download,
+    ExternalLink,
+    Plus,
+    Minus,
+} from "lucide-react"
+import { bioDetails, experiences, interests, skills } from "@/consts/about"
+import SkillCard from "@/components/about/skill-card"
+import { getCategoryIcon, SKILL_CATEGORIES, SkillCategory } from "@/types/about/skill"
+import { BioTab, ExperienceCard, InterestItem, ProfileCube } from "@/components/about"
 
-export default function AboutMeSection() {
+
+// Main About Section component
+export default function AboutSection() {
     const sectionRef = useRef<HTMLDivElement>(null)
-    const bioRef = useRef<HTMLDivElement>(null)
-    const [activeTab, setActiveTab] = useState<"skills" | "experience" | "education">("skills")
-    const [activeSkillCategory, setActiveSkillCategory] = useState<"frontend" | "backend" | "design" | "other">(
-        "frontend",
+    const [activeExperience, setActiveExperience] = useState<number | null>(0)
+    const [activeBioTab, setActiveBioTab] = useState(0)
+    const [activeSkillCategory, setActiveSkillCategory] = useState<SkillCategory>(
+        "all",
     )
+    const [expandedSkills, setExpandedSkills] = useState(false)
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -24,12 +35,65 @@ export default function AboutMeSection() {
     const y = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [100, 0, 0, 100])
     const springY = useSpring(y, { stiffness: 100, damping: 20 })
 
-    // Filter experiences based on active tab
-    const filteredExperiences = experiences.filter((exp) => {
-        if (activeTab === "experience") return exp.type === "work"
-        if (activeTab === "education") return exp.type === "education" || exp.type === "award"
-        return true
-    })
+    // Get one skill from each category for the 'all' view
+    const oneSkillPerCategory = SKILL_CATEGORIES.flatMap(category => {
+        if (category === "all") return [];
+
+        // Obtener todas las habilidades de esta categoría
+        const categorySkills = skills.filter(skill => skill.category === category);
+        if (categorySkills.length === 0) return [];
+
+        // Seleccionar habilidades específicas para cada categoría
+        switch (category) {
+            case "idiomas":
+                const englishSkill = categorySkills.find(skill => skill.name.includes("Inglés"));
+                if (englishSkill) return [englishSkill];
+                break;
+
+            case "frontend":
+                const reactSkill = categorySkills.find(skill => skill.name === "React");
+                if (reactSkill) return [reactSkill];
+                break;
+
+            case "backend":
+                const nestjsSkill = categorySkills.find(skill => skill.name === "NestJs");
+                if (nestjsSkill) return [nestjsSkill];
+                break;
+
+            case "devops":
+                const pm2Skill = categorySkills.find(skill => skill.name === "PM2");
+                if (pm2Skill) return [pm2Skill];
+                break;
+
+            case "herramientas":
+                const gitSkill = categorySkills.find(skill => skill.name === "Git");
+                if (gitSkill) return [gitSkill];
+                break;
+
+            case "otras":
+                const typescriptSkill = categorySkills.find(skill => skill.name === "TypeScript");
+                if (typescriptSkill) return [typescriptSkill];
+                break;
+        }
+
+        // Para categorías no especificadas o si no se encuentra la habilidad específica,
+        // usar el nivel más alto como respaldo
+        return [categorySkills.sort((a, b) => b.level - a.level)[0]];
+    });
+
+    // Filter skills based on active category
+    const filteredSkills = activeSkillCategory === "all"
+        ? (expandedSkills ? skills : oneSkillPerCategory)
+        : skills.filter((skill) => skill.category === activeSkillCategory);
+
+    // Display limited skills unless expanded
+    const displayedSkills = expandedSkills
+        ? filteredSkills
+        : filteredSkills.slice(0, 6);
+
+    // Filter experiences based on type
+    const workExperiences = experiences.filter((exp) => exp.type === "work")
+    const educationExperiences = experiences.filter((exp) => exp.type === "education" || exp.type === "award")
 
     return (
         <section
@@ -89,215 +153,295 @@ export default function AboutMeSection() {
                     </motion.div>
                 </div>
 
-                {/* Bio Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mb-20">
-                    {/* Image Column */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
-                        className="lg:col-span-2 flex justify-center lg:justify-end"
-                    >
-                        <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 mix-blend-overlay rounded-2xl z-10" />
-                            <Image
-                                src="/images/profile.webp"
-                                alt="Camilo José María Castillo"
-                                fill
-                                className="object-cover object-center"
-                                sizes="(max-width: 768px) 256px, 320px"
-                                priority
-                            />
-                            <div className="absolute inset-0 border-4 border-purple-500/30 rounded-2xl z-20" />
+                {/* Bio Section with 3D Profile */}
+                <div className="mb-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        {/* Profile Image Column */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6 }}
+                            className="lg:col-span-4 flex justify-center"
+                        >
+                            <div className="relative w-full max-w-sm aspect-square">
+                                <ProfileCube />
 
-                            {/* Decorative elements */}
-                            <motion.div
-                                className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-xl opacity-40 z-0"
-                                animate={{ scale: [1, 1.2, 1] }}
-                                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-                            />
-                            <motion.div
-                                className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-xl opacity-40 z-0"
-                                animate={{ scale: [1, 1.3, 1] }}
-                                transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
-                            />
-                        </div>
-                    </motion.div>
-
-                    {/* Bio Column */}
-                    <motion.div
-                        ref={bioRef}
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
-                        className="lg:col-span-3"
-                    >
-                        <div className="bg-gray-800/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-gray-700/50 shadow-xl">
-                            <h3 className="text-2xl font-bold text-white mb-4">Software Engineer & Web Developer</h3>
-
-                            <div className="space-y-4 text-gray-300">
-                                <p>
-                                    I&apos;m Camilo, a passionate Software Engineer with expertise in building modern web applications. With 5+
-                                    years of experience, I specialize in creating responsive, user-friendly interfaces using cutting-edge
-                                    technologies.
-                                </p>
-                                <p>
-                                    My journey in software development began during my university years, where I discovered my passion for
-                                    creating digital experiences that solve real-world problems. Since then, I&apos;ve worked with various
-                                    companies to deliver high-quality web solutions.
-                                </p>
-                                <p>
-                                    I believe in writing clean, maintainable code and staying up-to-date with the latest industry trends
-                                    and best practices. When I&apos;m not coding, you can find me exploring new technologies, contributing to
-                                    open-source projects, or enjoying my hobbies.
-                                </p>
+                                {/* Decorative elements */}
+                                <motion.div
+                                    className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-xl opacity-40 z-0"
+                                    animate={{ scale: [1, 1.2, 1] }}
+                                    transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
+                                />
+                                <motion.div
+                                    className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-xl opacity-40 z-0"
+                                    animate={{ scale: [1, 1.3, 1] }}
+                                    transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+                                />
                             </div>
+                        </motion.div>
 
-                            {/* Personal Info */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                                <div>
-                                    <ul className="space-y-2">
-                                        <li className="flex items-center text-gray-300">
-                                            <span className="font-semibold text-white mr-2">Age:</span> 22
-                                        </li>
-                                        <li className="flex items-center text-gray-300">
-                                            <span className="font-semibold text-white mr-2">Location:</span> San Francisco, CA
-                                        </li>
-                                        <li className="flex items-center text-gray-300">
-                                            <span className="font-semibold text-white mr-2">Nationality:</span> Spanish
-                                        </li>
-                                    </ul>
+                        {/* Bio Content Column */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6 }}
+                            className="lg:col-span-8"
+                        >
+                            <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h3 className="text-2xl font-bold text-white">Ingeniero de Software & Desarrollador Full Stack</h3>
                                 </div>
-                                <div>
-                                    <ul className="space-y-2">
-                                        <li className="flex items-center text-gray-300">
-                                            <span className="font-semibold text-white mr-2">Languages:</span> English, Spanish
-                                        </li>
-                                        <li className="flex items-center text-gray-300">
-                                            <span className="font-semibold text-white mr-2">Freelance:</span> Available
-                                        </li>
-                                        <li className="flex items-center text-gray-300">
-                                            <span className="font-semibold text-white mr-2">Experience:</span> 5+ Years
-                                        </li>
-                                    </ul>
+
+                                {/* Bio Tabs */}
+                                <div className="space-y-4 mb-6">
+                                    {bioDetails.map((detail, index) => (
+                                        <div key={index} onClick={() => setActiveBioTab(index)}>
+                                            <BioTab detail={detail} index={index} isActive={activeBioTab === index} />
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Personal Info Grid */}
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                                    <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
+                                        <div className="text-gray-400 text-sm mb-1">Edad</div>
+                                        <div className="text-white font-medium">22</div>
+                                    </div>
+
+                                    <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
+                                        <div className="text-gray-400 text-sm mb-1">Ubicación</div>
+                                        <div className="text-white font-medium">Providence, RI</div>
+                                    </div>
+
+                                    <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
+                                        <div className="text-gray-400 text-sm mb-1">Nacionalidad</div>
+                                        <div className="text-white font-medium">Dominicano</div>
+                                    </div>
+
+                                    <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
+                                        <div className="text-gray-400 text-sm mb-1">Idiomas</div>
+                                        <div className="text-white font-medium">Español, Inglés</div>
+                                    </div>
+
+                                    <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
+                                        <div className="text-gray-400 text-sm mb-1">Freelance</div>
+                                        <div className="text-white font-medium">Disponible</div>
+                                    </div>
+
+                                    <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
+                                        <div className="text-gray-400 text-sm mb-1">Experiencia</div>
+                                        <div className="text-white font-medium">4+ Años</div>
+                                    </div>
+                                </div>
+
+                                {/* CTA Buttons */}
+                                <div className="flex flex-wrap gap-4 mt-8">
+                                    <motion.a
+                                        href="#"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                                    >
+                                        <Download className="w-4 h-4" />
+                                        Descargar CV
+                                    </motion.a>
+                                    <motion.a
+                                        href="#contacto"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="px-6 py-3 bg-transparent border border-purple-500 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:bg-purple-500/10"
+                                    >
+                                        <ExternalLink className="w-4 h-4" />
+                                        Contáctame
+                                    </motion.a>
                                 </div>
                             </div>
-
-                            {/* CTA Buttons */}
-                            <div className="flex flex-wrap gap-4 mt-8">
-                                <motion.a
-                                    href="#"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
-                                >
-                                    <Download className="w-4 h-4" />
-                                    Download CV
-                                </motion.a>
-                                <motion.a
-                                    href="#contact"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="px-6 py-3 bg-transparent border border-purple-500 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:bg-purple-500/10"
-                                >
-                                    <ExternalLink className="w-4 h-4" />
-                                    Contact Me
-                                </motion.a>
-                            </div>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
                 </div>
 
-                {/* Skills & Experience Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-20">
-                    {/* Skills & Interests Column */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <div className="bg-gray-800/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-gray-700/50 shadow-xl h-full flex flex-col">
-                            <h3 className="text-2xl font-bold text-white mb-4">My Skills</h3>
+                {/* Skills Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-20"
+                >
+                    <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
+                        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+                            <h3 className="text-2xl font-bold text-white">Mis Habilidades</h3>
 
                             {/* Skill category tabs */}
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["frontend", "backend", "design", "other"].map((category) => (
+                            <div className="flex flex-wrap gap-2">
+                                <button
+                                    onClick={() => setActiveSkillCategory("all")}
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${activeSkillCategory === "all"
+                                        ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+                                        : "bg-gray-700/50 text-gray-400 hover:bg-gray-700"
+                                        }`}
+                                >
+                                    Todas las Habilidades
+                                </button>
+
+                                {SKILL_CATEGORIES.map((category) => (
                                     <button
                                         key={category}
-                                        onClick={() => setActiveSkillCategory(category as "frontend" | "backend" | "design" | "other")}
-                                        className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${activeSkillCategory === category
+                                        onClick={() => setActiveSkillCategory(category as SkillCategory)}
+                                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-1.5 ${activeSkillCategory === category
                                             ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
                                             : "bg-gray-700/50 text-gray-400 hover:bg-gray-700"
                                             }`}
                                     >
-                                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                                        <span className="w-4 h-4">{getCategoryIcon(category)}</span>
+                                        <span>{category.charAt(0).toUpperCase() + category.slice(1)}</span>
                                     </button>
                                 ))}
-                            </div>
-
-                            {/* Skill bars */}
-                            <div className="space-y-3 mb-8 flex-grow">
-                                {skills
-                                    .filter((skill) => skill.category === activeSkillCategory)
-                                    .map((skill, index) => (
-                                        <SkillBar key={skill.name} skill={skill} index={index} />
-                                    ))}
-                            </div>
-
-                            {/* Interests Section - Integrated */}
-                            <div className="pt-4 border-t border-gray-700/50 mt-auto">
-                                <h3 className="text-xl font-bold text-white mb-4">My Interests</h3>
-                                <div className="grid grid-cols-3 sm:grid-cols-3 gap-3">
-                                    {interests.map((interest, index) => (
-                                        <InterestItem key={interest.name} interest={interest} index={index} />
-                                    ))}
-                                </div>
                             </div>
                         </div>
-                    </motion.div>
 
-                    {/* Experience Column */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <div className="bg-gray-800/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-gray-700/50 shadow-xl h-full">
-                            <h3 className="text-2xl font-bold text-white mb-6">Experience & Education</h3>
+                        {/* Skills grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                            {activeSkillCategory === "all" ? (
+                                // Vista general por categorías
+                                displayedSkills.map((skill, index) => (
+                                    <div key={skill.name} className="flex flex-col">
+                                        <div className="mb-2 flex items-center justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <span className="w-5 h-5">{getCategoryIcon(skill.category)}</span>
+                                                <span className="text-sm font-semibold text-purple-400 capitalize">
+                                                    {skill.category}
+                                                </span>
+                                            </div>
+                                            <button
+                                                onClick={() => setActiveSkillCategory(skill.category)}
+                                                className="text-xs text-gray-400 hover:text-purple-400 transition-colors"
+                                            >
+                                                Ver todas
+                                            </button>
+                                        </div>
+                                        <SkillCard skill={skill} index={index} />
+                                    </div>
+                                ))
+                            ) : (
+                                // Vista normal filtrada por categoría
+                                displayedSkills.map((skill, index) => (
+                                    <SkillCard key={skill.name} skill={skill} index={index} />
+                                ))
+                            )}
+                        </div>
 
-                            {/* Experience tabs */}
-                            <div className="flex flex-wrap gap-2 mb-6">
-                                {["experience", "education"].map((tab) => (
-                                    <button
-                                        key={tab}
-                                        onClick={() => setActiveTab(tab as "experience" | "education")}
-                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
-                                            ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
-                                            : "bg-gray-700/50 text-gray-400 hover:bg-gray-700"
-                                            }`}
-                                    >
-                                        {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                                    </button>
-                                ))}
+                        {/* Show more/less button */}
+                        {filteredSkills.length > 6 && (
+                            <div className="flex justify-center mt-6">
+                                <motion.button
+                                    onClick={() => setExpandedSkills(!expandedSkills)}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-6 py-3 bg-gray-800/80 border border-gray-700/50 rounded-full text-white font-medium flex items-center gap-2 hover:bg-gray-700/80 transition-colors"
+                                >
+                                    {expandedSkills ? (
+                                        <>
+                                            <Minus className="w-4 h-4" />
+                                            Mostrar Menos
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Plus className="w-4 h-4" />
+                                            Mostrar Más ({filteredSkills.length - 6} más)
+                                        </>
+                                    )}
+                                </motion.button>
+                            </div>
+                        )}
+                    </div>
+                </motion.div>
+
+                {/* Experience Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="mb-20"
+                >
+                    <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
+                        <h3 className="text-2xl font-bold text-white mb-8">Experiencia & Educación</h3>
+
+                        {/* Work Experience */}
+                        <div className="mb-10">
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className="p-2 rounded-lg bg-purple-500/20 text-purple-300">
+                                    <Briefcase className="w-5 h-5" />
+                                </div>
+                                <h4 className="text-xl font-bold text-white">Experiencia Laboral</h4>
                             </div>
 
-                            {/* Timeline */}
-                            <div className="mt-8 pl-4">
-                                {filteredExperiences.map((experience, index) => (
-                                    <TimelineItem
+                            <div className="space-y-4">
+                                {workExperiences.map((experience, index) => (
+                                    <ExperienceCard
                                         key={`${experience.title}-${experience.company}`}
                                         experience={experience}
                                         index={index}
+                                        isActive={activeExperience === index}
+                                        onClick={() => setActiveExperience(index === activeExperience ? null : index)}
                                     />
                                 ))}
                             </div>
                         </div>
-                    </motion.div>
-                </div>
+
+                        {/* Education & Awards */}
+                        <div>
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className="p-2 rounded-lg bg-blue-500/20 text-blue-300">
+                                    <GraduationCap className="w-5 h-5" />
+                                </div>
+                                <h4 className="text-xl font-bold text-white">Educación & Premios</h4>
+                            </div>
+
+                            <div className="space-y-4">
+                                {educationExperiences.map((experience, index) => (
+                                    <ExperienceCard
+                                        key={`${experience.title}-${experience.company}`}
+                                        experience={experience}
+                                        index={index + workExperiences.length}
+                                        isActive={activeExperience === index + workExperiences.length}
+                                        onClick={() =>
+                                            setActiveExperience(
+                                                index + workExperiences.length === activeExperience ? null : index + workExperiences.length,
+                                            )
+                                        }
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Interests Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="mb-20"
+                >
+                    <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
+                        <h3 className="text-2xl font-bold text-white mb-6">Mis Intereses</h3>
+                        <p className="text-gray-400 mb-8 max-w-3xl">
+                            Más allá de la programación y el desarrollo, me apasionan estas actividades que me mantienen inspirado y equilibrado.
+                            Pasa el cursor sobre cada tarjeta para saber más.
+                        </p>
+
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                            {interests.map((interest, index) => (
+                                <InterestItem key={interest.name} interest={interest} index={index} />
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
 
                 {/* Quote Section */}
                 <motion.div
@@ -307,14 +451,19 @@ export default function AboutMeSection() {
                     transition={{ duration: 0.6 }}
                     className="text-center max-w-3xl mx-auto"
                 >
-                    <div className="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/30 shadow-xl">
-                        <div className="text-5xl text-purple-500 mb-4">&quot;</div>
-                        <p className="text-xl text-gray-300 italic mb-6">
-                            I believe that great software is not just about code, but about creating experiences that make people&apos;s
-                            lives better.
-                        </p>
-                        <div className="text-white font-bold">Camilo José María Castillo</div>
-                        <div className="text-purple-400 text-sm">Software Engineer</div>
+                    <div className="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/30 shadow-xl relative overflow-hidden">
+                        {/* Decorative elements */}
+                        <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
+                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-pink-500/10 rounded-full blur-3xl"></div>
+
+                        <div className="relative">
+                            <div className="text-5xl text-purple-500 mb-4">&quot;</div>
+                            <p className="text-xl text-gray-300 italic mb-6">
+                                Creo que el gran software no se trata solo de código, sino de crear experiencias que mejoren la vida de las personas.
+                            </p>
+                            <div className="text-white font-bold">Camilo José María Castillo</div>
+                            <div className="text-purple-400 text-sm">Ingeniero de Software</div>
+                        </div>
                     </div>
                 </motion.div>
             </motion.div>

@@ -85,7 +85,7 @@ export default function ProjectsSection() {
 
     return (
         <section
-            id="projects"
+            id="proyectos"
             ref={sectionRef}
             className="py-20 px-6 md:px-10 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden"
             onMouseMove={handleMouseMove}
