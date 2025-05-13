@@ -6,6 +6,7 @@ const experiences: Experience[] = [
         company: "Plaza Lama",
         location: "Santo Domingo, República Dominicana (Remoto)",
         period: "2025 - Actualidad",
+        area: "E-commerce",
         description:
             "Consultoría técnica para optimización y mejora de sistemas existentes. Mentoría y enseñanza a nuevos programadores. Resolución de bugs críticos sin participación directa en el desarrollo de código. Asesoramiento en implementación de nuevas tecnologías y soluciones. Análisis y recomendaciones para mejorar la arquitectura de software y procesos de desarrollo.",
         achievements: [
@@ -16,13 +17,14 @@ const experiences: Experience[] = [
         ],
         type: "work",
         current: true,
-        technologies: ["NodeJs", "TypeScript", "NestJs", "React", "MySQL", "Linux", "Docker", "GitLab CI/CD", "Jira"]
+        technologies: ["NodeJs", "TypeScript", "NestJs", "React", "MySQL", "Linux", "Docker", "GitLab CI/CD", "Jira", "Intranet"]
     },
     {
         title: "Desarrollador Full Stack",
         company: "Plaza Lama",
         location: "Santo Domingo, República Dominicana (Remoto)",
         period: "2023 - 2025",
+        area: "E-commerce",
         description:
             "Como único programador del equipo, me encargué de la revisión y depuración de código para garantizar calidad y funcionalidad. Desarrollo de bases de datos, aplicaciones y servidores para soportar sitios web desde el backend. Integración de APIs de terceros para mejorar funcionalidades y experiencia del usuario. Optimización de recursos del frontend, reduciendo significativamente los tiempos de carga. Comunicación directa con clientes para revisar avances, recoger feedback y resolver inquietudes. Refactorización de código para modernizar la arquitectura y facilitar el mantenimiento del software.",
         achievements: [
@@ -37,13 +39,29 @@ const experiences: Experience[] = [
         ],
         type: "work",
         current: false,
-        technologies: ["NodeJs", "TypeScript", "NestJs", "Angular", "React", "MongoDB", "MySQL", "Linux", "PM2", "Docker", "GitLab CI/CD", "Jira"]
+        technologies: ["NodeJs", "TypeScript", "NestJs", "Angular", "React", "MongoDB", "MySQL", "Linux", "PM2", "Docker", "GitLab CI/CD", "Jira", "Intranet"]
+    },
+    {
+        title: "Pasante Desarrollador Full Stack",
+        company: "Plaza Lama",
+        location: "Santo Domingo, República Dominicana",
+        period: "2023 - 2023",
+        area: "Tecnología",
+        description:
+            "Pasantía de 3 meses en el área de tecnología donde aprendí las tecnologías utilizadas en la empresa y brindé apoyo al programador principal. Familiarización con la arquitectura de sistemas y participación en proyectos internos para mejorar la eficiencia operativa.",
+        achievements: [
+            "Desarrollo e implementación de un módulo en la intranet para que los empleados puedan consultar las extensiones telefónicas de toda la empresa, mejorando la comunicación interna."
+        ],
+        type: "work",
+        current: false,
+        technologies: ["NodeJs", "TypeScript", "NestJs", "Angular", "MySQL", "Intranet"]
     },
     {
         title: "Database Administrator",
         company: "C&C Technology Supply, LLC",
         location: "Santo Domingo, República Dominicana",
         period: "2020 - 2022",
+        area: "Tecnología de la Información",
         description:
             "Optimización de procesos de respaldo y recuperación de datos para mejorar la estabilidad del sistema. Administración, soporte y monitoreo proactivo de bases de datos y servidores. Resolución ágil de incidentes críticos en producción, minimizando el tiempo de inactividad y previniendo pérdidas económicas. Implementación de soluciones de monitoreo que permitieron detectar problemas antes de que se volvieran críticos.",
         achievements: [

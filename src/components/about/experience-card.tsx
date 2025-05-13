@@ -2,7 +2,7 @@ import { useInView } from "framer-motion"
 import { Experience } from "@/types/about/experience"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { Calendar, MapPin, Briefcase, GraduationCap, Award, ChevronRight } from "lucide-react"
+import { Calendar, MapPin, Briefcase, GraduationCap, Award, ChevronRight, Tag } from "lucide-react"
 import { useRef, } from "react"
 
 
@@ -70,11 +70,21 @@ const ExperienceCard = ({
 
                             <div className="text-gray-400 text-sm">{experience.company}</div>
 
-                            <div className="flex items-center text-gray-400 text-xs mt-1">
-                                <Calendar className="w-3 h-3 mr-1" />
-                                <span className="mr-3">{experience.period}</span>
-                                <MapPin className="w-3 h-3 mr-1" />
-                                <span>{experience.location}</span>
+                            <div className="flex flex-wrap items-center text-gray-400 text-xs mt-1">
+                                <div className="flex items-center mr-3">
+                                    <Calendar className="w-3 h-3 mr-1" />
+                                    <span>{experience.period}</span>
+                                </div>
+                                <div className="flex items-center mr-3">
+                                    <MapPin className="w-3 h-3 mr-1" />
+                                    <span>{experience.location}</span>
+                                </div>
+                                {experience.area && (
+                                    <div className="flex items-center">
+                                        <Tag className="w-3 h-3 mr-1" />
+                                        <span>{experience.area}</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
