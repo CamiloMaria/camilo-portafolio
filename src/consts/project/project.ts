@@ -27,11 +27,13 @@ const projects: Project[] = [
         description: "API backend desarrollada con NestJS para soportar todas las funcionalidades del dashboard e-commerce de Plaza Lama.",
         longDescription:
             "Este proyecto constituye el backend que conecta toda la lógica del dashboard frontend para Plaza Lama. Desarrollado con las mejores prácticas de NestJS, implementa una arquitectura robusta para gestionar la autenticación, autorización y todas las operaciones de negocio. Utiliza TypeORM como ORM para la gestión de base de datos, JWT para la autenticación, Winston para logging, y está completamente probado con Jest.",
-        image: "/placeholder.svg?height=400&width=600",
+        image: "/projects/backend-1.webp",
         gallery: [
-            "/placeholder.svg?height=400&width=600",
-            "/placeholder.svg?height=400&width=600",
-            "/placeholder.svg?height=400&width=600",
+            "/projects/backend-1.webp",
+            "/projects/backend-2.webp",
+            "/projects/backend-3.webp",
+            "/projects/backend-4.webp",
+            "/projects/backend-5.webp",
         ],
         tags: ["NestJS", "TypeScript", "Node.js", "TypeORM", "JWT", "RxJS", "Jest"],
         githubUrl: "https://github.com/CamiloMaria/dashboard-backend",
