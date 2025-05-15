@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import {
     motion,
     useScroll,
@@ -19,6 +19,8 @@ export default function ProjectsSection() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [showCustomCursor, setShowCustomCursor] = useState(false)
+    const [filteredProjects, setFilteredProjects] = useState(projects)
+    const [refreshKey, setRefreshKey] = useState(0)
 
     const sectionRef = useRef<HTMLDivElement>(null)
     const mouseX = useMotionValue(0)
@@ -29,39 +31,42 @@ export default function ProjectsSection() {
         offset: ["start end", "end start"],
     })
 
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0])
-    const y = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [100, 0, 0, 100])
+    // Modificar las transformaciones para mantener un valor mínimo de opacidad
+    // para que el contenido no desaparezca completamente
+    const contentOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.8])
+    const contentY = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [50, 0, 0, 50])
+
+    // Monitorear el scrollYProgress para debugging
+    useEffect(() => {
+        const unsubscribe = scrollYProgress.onChange(v => {
+            console.log("Scroll position:", v);
+        });
+        return () => unsubscribe();
+    }, [scrollYProgress]);
+
+    // Update filtered projects when filter changes
+    useEffect(() => {
+        console.log("Filter changed to:", filter);
+        if (filter === "all") {
+            setFilteredProjects(projects);
+            console.log("Setting all projects:", projects.length);
+        } else if (filter === "featured") {
+            const featured = projects.filter((project) => project.featured);
+            setFilteredProjects(featured);
+            console.log("Setting featured projects:", featured.length);
+        } else {
+            const filtered = projects.filter((project) => project.category === filter);
+            setFilteredProjects(filtered);
+            console.log("Setting category projects:", filtered.length);
+        }
+        // Force a component refresh by updating the key
+        setRefreshKey(prevKey => prevKey + 1);
+    }, [filter])
 
     const handleMouseMove = (e: React.MouseEvent) => {
         const { clientX, clientY } = e
         mouseX.set(clientX)
         mouseY.set(clientY)
-    }
-
-    const filteredProjects =
-        filter === "all"
-            ? projects
-            : filter === "featured"
-                ? projects.filter((project) => project.featured)
-                : projects.filter((project) => project.category === filter)
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-            },
-        },
-    }
-
-    const projectVariants = {
-        hidden: { y: 50, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.6, ease: "easeOut" },
-        },
     }
 
     const openProjectModal = (project: Project) => {
@@ -125,60 +130,80 @@ export default function ProjectsSection() {
             {/* Custom cursor */}
             {showCustomCursor && <ProjectCursor mouseX={mouseX} mouseY={mouseY} />}
 
-            <motion.div className="max-w-7xl mx-auto relative z-10" style={{ opacity, y }}>
-                {/* Section Header */}
-                <div className="mb-16 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Mis{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
-                                Proyectos
-                            </span>
-                        </h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-                            Aquí están algunos de mis proyectos recientes. Cada uno fue cuidadosamente elaborado con atención al detalle, rendimiento,
-                            y experiencia de usuario.
-                        </p>
+            {/* Header Section - Always visible, independent of scroll animations */}
+            <div className="max-w-7xl mx-auto relative z-20 mb-16 text-center">
+                <motion.div
+                    key={`header-${refreshKey}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="min-opacity-80"
+                >
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
+                        Mis{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
+                            Proyectos
+                        </span>
+                    </h2>
+                    <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
+                        Aquí están algunos de mis proyectos recientes. Cada uno fue cuidadosamente elaborado con atención al detalle, rendimiento,
+                        y experiencia de usuario.
+                    </p>
 
-                        {/* Filter Buttons */}
-                        <div className="flex flex-wrap justify-center gap-3 mb-12">
-                            {categories.map((category) => (
-                                <motion.button
-                                    key={category.id}
-                                    onClick={() => setFilter(category.id as Project["category"])}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${filter === category.id
-                                        ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/20"
-                                        : "bg-gray-800/80 text-gray-400 hover:bg-gray-700/80 backdrop-blur-sm"
-                                        }`}
-                                >
-                                    {category.id !== "all" && category.id !== "featured" && (
-                                        <span className="mr-2 inline-block align-middle">
-                                            <CategoryIcon category={category.id as Project["category"]} />
-                                        </span>
-                                    )}
-                                    {category.label}
-                                </motion.button>
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
+                    {/* Filter Buttons */}
+                    <div className="flex flex-wrap justify-center gap-3 mb-12">
+                        {categories.map((category) => (
+                            <motion.button
+                                key={category.id}
+                                onClick={() => {
+                                    console.log("Clicked category:", category.id);
+                                    // Use type assertion that matches the filter state type
+                                    const newFilter = category.id as "all" | "featured" | Project["category"];
+                                    if (newFilter !== filter) {
+                                        setFilter(newFilter);
+                                    } else {
+                                        // If clicking the same filter, force a re-render
+                                        setRefreshKey(prev => prev + 1);
+                                    }
+                                }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${filter === category.id
+                                    ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/20"
+                                    : "bg-gray-800/80 text-gray-400 hover:bg-gray-700/80 backdrop-blur-sm"
+                                    }`}
+                            >
+                                {category.id !== "all" && category.id !== "featured" && (
+                                    <span className="mr-2 inline-block align-middle">
+                                        <CategoryIcon category={category.id as Project["category"]} />
+                                    </span>
+                                )}
+                                {category.label}
+                            </motion.button>
+                        ))}
+                    </div>
+                </motion.div>
+            </div>
 
+            {/* Content section - Affected by scroll animations but with minimum visibility */}
+            <motion.div
+                key={`container-${filter}-${refreshKey}`}
+                className="max-w-7xl mx-auto relative z-10 min-opacity-80"
+                style={{ opacity: contentOpacity, y: contentY }}
+            >
                 {/* Featured Project Showcase (only shown when not filtering) */}
                 {filter === "all" && (
                     <motion.div
+                        key={`featured-showcase-${filter}-${refreshKey}`}
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
                         className="mb-16"
                     >
+                        {(() => {
+                            console.log("Rendering featured showcase");
+                            return null;
+                        })()}
                         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-800/50 shadow-xl">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8">
                                 <div className="flex flex-col justify-center">
@@ -238,6 +263,7 @@ export default function ProjectsSection() {
                                         src={projects[0].image || "/placeholder.svg"}
                                         alt={projects[0].title}
                                         fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className="object-cover rounded-xl"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-60" />
@@ -248,18 +274,24 @@ export default function ProjectsSection() {
                 )}
 
                 {/* Projects Grid */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
+                <div
+                    key={`projects-grid-${filter}-${refreshKey}`}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
+                    {(() => {
+                        console.log("Rendering filtered projects:", filteredProjects.length, filteredProjects.map(p => p.id));
+                        return null;
+                    })()}
                     {filteredProjects.map((project, index) => (
                         <motion.div
-                            key={project.id}
-                            variants={projectVariants}
-                            custom={index}
+                            key={`project-${project.id}-${refreshKey}`}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{
+                                duration: 0.4,
+                                delay: Math.min(index * 0.1, 0.5), // Limitar el delay máximo
+                                ease: "easeOut"
+                            }}
                             className="group"
                         >
                             <TiltCard className="h-full">
@@ -270,6 +302,7 @@ export default function ProjectsSection() {
                                             src={project.image || "/placeholder.svg"}
                                             alt={project.title}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60" />
@@ -358,14 +391,22 @@ export default function ProjectsSection() {
                             </TiltCard>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
 
                 {/* Empty state when no projects match filter */}
                 {filteredProjects.length === 0 && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-20">
+                    <motion.div
+                        key={`empty-state-${filter}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-center py-20"
+                    >
                         <p className="text-gray-400 text-lg">No projects found matching the selected filter.</p>
                         <button
-                            onClick={() => setFilter("all")}
+                            onClick={() => {
+                                console.log("Setting filter to all from empty state");
+                                setFilter("all");
+                            }}
                             className="mt-4 px-6 py-2 bg-purple-600 rounded-full text-white font-medium"
                         >
                             View All Projects
@@ -376,9 +417,10 @@ export default function ProjectsSection() {
                 {/* View All Projects Button */}
                 {filteredProjects.length > 0 && (
                     <motion.div
+                        key={`view-all-${filter}`}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="mt-16 text-center"
                     >

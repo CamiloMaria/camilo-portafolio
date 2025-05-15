@@ -46,6 +46,7 @@ const ProfileCube = () => {
                             src="/images/profile.webp"
                             alt="Camilo José María Castillo"
                             fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             className="object-cover"
                         />
                         <div className="absolute inset-0 border-4 border-purple-500/30 rounded-2xl z-20" />
