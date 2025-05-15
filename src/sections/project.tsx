@@ -7,7 +7,7 @@ import {
     useTransform,
     useMotionValue,
 } from "framer-motion"
-import { ExternalLink, Github, ArrowRight } from "lucide-react"
+import { ExternalLink, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { Project } from "@/types/project"
 import { projects } from "@/consts/project"
@@ -209,15 +209,27 @@ export default function ProjectsSection() {
                                         >
                                             View Details
                                         </motion.button>
+                                        {projects[0].demoUrl && (
+                                            <motion.a
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                href={projects[0].demoUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="px-6 py-3 bg-transparent border border-purple-500/50 rounded-full text-white font-medium transform transition-all duration-300 hover:bg-purple-500/10 focus:outline-none"
+                                            >
+                                                Live Demo
+                                            </motion.a>
+                                        )}
                                         <motion.a
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
-                                            href={projects[0].demoUrl}
+                                            href={projects[0].githubUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="px-6 py-3 bg-transparent border border-purple-500/50 rounded-full text-white font-medium transform transition-all duration-300 hover:bg-purple-500/10 focus:outline-none"
                                         >
-                                            Live Demo
+                                            GitHub
                                         </motion.a>
                                     </div>
                                 </div>
@@ -277,15 +289,17 @@ export default function ProjectsSection() {
                                                 transition={{ duration: 0.3, delay: 0.1 }}
                                                 className="flex gap-4"
                                             >
-                                                <a
-                                                    href={project.demoUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="p-2 bg-white/90 rounded-full text-purple-600 hover:bg-white transition-colors duration-300 transform hover:scale-110"
-                                                    aria-label={`View live demo of ${project.title}`}
-                                                >
-                                                    <ExternalLink className="w-5 h-5" />
-                                                </a>
+                                                {project.demoUrl && (
+                                                    <a
+                                                        href={project.demoUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="p-2 bg-white/90 rounded-full text-purple-600 hover:bg-white transition-colors duration-300 transform hover:scale-110"
+                                                        aria-label={`View live demo of ${project.title}`}
+                                                    >
+                                                        <ExternalLink className="w-5 h-5" />
+                                                    </a>
+                                                )}
                                                 <a
                                                     href={project.githubUrl}
                                                     target="_blank"
@@ -293,7 +307,7 @@ export default function ProjectsSection() {
                                                     className="p-2 bg-white/90 rounded-full text-purple-600 hover:bg-white transition-colors duration-300 transform hover:scale-110"
                                                     aria-label={`View GitHub repository of ${project.title}`}
                                                 >
-                                                    <Github className="w-5 h-5" />
+                                                    <Image src="/socials/github.svg" alt="GitHub" width={20} height={20} />
                                                 </a>
                                             </motion.div>
                                         </div>

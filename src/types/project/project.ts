@@ -4,10 +4,10 @@ export interface Project {
     description: string
     image: string
     tags: string[]
-    demoUrl: string
     githubUrl: string
     featured: boolean
-    category: "web" | "mobile" | "design" | "ai"
+    category: "backend" | "frontend" | "mobile"
+    demoUrl?: string
     longDescription?: string
     gallery?: string[]
 }

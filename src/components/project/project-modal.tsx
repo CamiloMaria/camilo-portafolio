@@ -174,15 +174,17 @@ export default function ProjectModal({
                                     <div>
                                         <h4 className="text-lg font-semibold text-white mb-3">Links</h4>
                                         <div className="flex gap-4">
-                                            <a
-                                                href={project.demoUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
-                                            >
-                                                <ExternalLink className="w-4 h-4" />
-                                                <span>Live Demo</span>
-                                            </a>
+                                            {project.demoUrl && (
+                                                <a
+                                                    href={project.demoUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                                                >
+                                                    <ExternalLink className="w-4 h-4" />
+                                                    <span>Live Demo</span>
+                                                </a>
+                                            )}
                                             <a
                                                 href={project.githubUrl}
                                                 target="_blank"
