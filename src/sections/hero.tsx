@@ -154,7 +154,7 @@ export default function HeroSection() {
                             className="flex flex-col sm:flex-row gap-4 justify-center"
                         >
                             <a
-                                href="#projects"
+                                href="#proyectos"
                                 className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium transform transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)] focus:outline-none text-center"
                             >
                                 Ver proyectos

@@ -384,9 +384,11 @@ export default function ProjectsSection() {
                         className="mt-16 text-center"
                     >
                         <motion.a
-                            href="#"
+                            href="https://github.com/CamiloMaria?tab=repositories"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium transform transition-all duration-300 hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] focus:outline-none"
                         >
                             View All Projects

@@ -6,7 +6,7 @@ const projects: Project[] = [
         title: "Dashboard E-Commerce Plaza Lama",
         description: "Dashboard para e-commerce desarrollado desde cero, reemplazando una versión antigua en Angular con mejoras significativas de rendimiento.",
         longDescription:
-            "Este dashboard para e-commerce fue creado completamente desde cero para Plaza Lama, sustituyendo una versión anterior desarrollada en una versión obsoleta de Angular. El proyecto mejoró el rendimiento en más de un 200% y automatizó numerosos procesos. Implementado con las mejores prácticas del framework, cuenta con una interfaz responsiva, gestión de inventario, y utiliza mocks para las llamadas a la API durante el desarrollo.",
+            "Este dashboard para e-commerce fue creado completamente desde cero para Plaza Lama, sustituyendo una versión anterior desarrollada en una versión obsoleta de Angular. El proyecto mejoró el rendimiento en más de un 200% y automatizó numerosos procesos. Implementado con las mejores prácticas del framework, cuenta con una interfaz responsiva, gestión de inventario, y utiliza mocks para las llamadas a la API durante el desarrollo. Para loguearte, usa el usuario: admin y la contraseña: admin",
         image: "/projects/frontend-1.webp",
         gallery: [
             "/projects/frontend-1.webp",
