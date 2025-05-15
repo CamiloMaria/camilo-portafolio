@@ -36,28 +36,16 @@ export default function ProjectsSection() {
     const contentOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.8])
     const contentY = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [50, 0, 0, 50])
 
-    // Monitorear el scrollYProgress para debugging
-    useEffect(() => {
-        const unsubscribe = scrollYProgress.onChange(v => {
-            console.log("Scroll position:", v);
-        });
-        return () => unsubscribe();
-    }, [scrollYProgress]);
-
     // Update filtered projects when filter changes
     useEffect(() => {
-        console.log("Filter changed to:", filter);
         if (filter === "all") {
             setFilteredProjects(projects);
-            console.log("Setting all projects:", projects.length);
         } else if (filter === "featured") {
             const featured = projects.filter((project) => project.featured);
             setFilteredProjects(featured);
-            console.log("Setting featured projects:", featured.length);
         } else {
             const filtered = projects.filter((project) => project.category === filter);
             setFilteredProjects(filtered);
-            console.log("Setting category projects:", filtered.length);
         }
         // Force a component refresh by updating the key
         setRefreshKey(prevKey => prevKey + 1);
@@ -156,7 +144,6 @@ export default function ProjectsSection() {
                             <motion.button
                                 key={category.id}
                                 onClick={() => {
-                                    console.log("Clicked category:", category.id);
                                     // Use type assertion that matches the filter state type
                                     const newFilter = category.id as "all" | "featured" | Project["category"];
                                     if (newFilter !== filter) {
@@ -200,10 +187,6 @@ export default function ProjectsSection() {
                         transition={{ duration: 0.6 }}
                         className="mb-16"
                     >
-                        {(() => {
-                            console.log("Rendering featured showcase");
-                            return null;
-                        })()}
                         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-800/50 shadow-xl">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8">
                                 <div className="flex flex-col justify-center">
@@ -278,10 +261,6 @@ export default function ProjectsSection() {
                     key={`projects-grid-${filter}-${refreshKey}`}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
-                    {(() => {
-                        console.log("Rendering filtered projects:", filteredProjects.length, filteredProjects.map(p => p.id));
-                        return null;
-                    })()}
                     {filteredProjects.map((project, index) => (
                         <motion.div
                             key={`project-${project.id}-${refreshKey}`}
@@ -404,7 +383,6 @@ export default function ProjectsSection() {
                         <p className="text-gray-400 text-lg">No projects found matching the selected filter.</p>
                         <button
                             onClick={() => {
-                                console.log("Setting filter to all from empty state");
                                 setFilter("all");
                             }}
                             className="mt-4 px-6 py-2 bg-purple-600 rounded-full text-white font-medium"
