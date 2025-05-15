@@ -75,12 +75,11 @@ export default function ProjectsSection() {
 
     // Categories for filter
     const categories = [
-        { id: "all", label: "All Projects" },
-        { id: "featured", label: "Featured" },
-        { id: "web", label: "Web" },
+        { id: "all", label: "Todos" },
+        { id: "featured", label: "Destacados" },
+        { id: "frontend", label: "Frontend" },
+        { id: "backend", label: "Backend" },
         { id: "mobile", label: "Mobile" },
-        { id: "design", label: "Design" },
-        { id: "ai", label: "AI" },
     ]
 
     return (
