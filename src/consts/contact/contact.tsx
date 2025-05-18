@@ -38,7 +38,7 @@ const contactData: ContactItem[] = [
         icon: "/socials/whatsapp.svg",
         useImage: true,
         url: "https://wa.me/14013281867",
-        username: "+1 (401) 328-1867 (SMS & Llamadas)",
+        username: "+1 (401) 328-1867 (SMS)",
         color: "bg-[#25D366]",
         hoverColor: "hover:bg-[#25D366]/90",
         textColor: "text-[#25D366]",

@@ -142,13 +142,13 @@ export default function AboutSection() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            About{" "}
+                            Sobre{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
-                                Me
+                                Mí
                             </span>
                         </h2>
                         <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-                            Get to know more about me, my background, and what I do.
+                            Conoce más sobre mí, mi trayectoria y lo que hago.
                         </p>
                     </motion.div>
                 </div>
