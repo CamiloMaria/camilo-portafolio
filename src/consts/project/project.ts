@@ -100,7 +100,7 @@ const projects: Project[] = [
             "/projects/becca-5.webp",
             "/projects/becca-6.webp",
         ],
-        tags: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design", "Fotografía", "Portafolio"],
+        tags: ["Astro", "Tailwind CSS", "Responsive Design", "Fotografía", "Portafolio"],
         demoUrl: "https://beccastudio.com/",
         githubUrl: "https://github.com/CamiloMaria/beccastudio",
         featured: true,
