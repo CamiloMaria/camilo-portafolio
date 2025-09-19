@@ -1,7 +1,7 @@
 # Camilo Portfolio
 
 ## Description
-This is a personal portfolio website for Camilo José María Castillo, a Software Engineer. The website showcases his skills, experience, projects, and testimonials from clients. It's built with modern web technologies and features a sleek, responsive design with interactive elements and animations.
+The website showcases his skills, experience, projects, and testimonials from clients. It's built with modern web technologies and features a sleek, responsive design with interactive elements and animations.
 
 ## Table of Contents
 - [Installation](#installation)
