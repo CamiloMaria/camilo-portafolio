@@ -2,55 +2,55 @@ import { Experience } from "@/types/about";
 
 const experiences: Experience[] = [
     {
-        title: "Consultor y Mentor",
+        title: "Consultant and Mentor",
         company: "Plaza Lama",
-        location: "Santo Domingo, República Dominicana (Remoto)",
-        period: "2025 - Actualidad",
+        location: "Santo Domingo, Dominican Republic (Remote)",
+        period: "2025 - 2025",
         area: "E-commerce",
         description:
-            "Consultoría técnica para optimización y mejora de sistemas existentes. Mentoría y enseñanza a nuevos programadores. Resolución de bugs críticos sin participación directa en el desarrollo de código. Asesoramiento en implementación de nuevas tecnologías y soluciones. Análisis y recomendaciones para mejorar la arquitectura de software y procesos de desarrollo.",
+            "Technical consulting for optimization and improvement of existing systems. Mentoring and teaching new programmers. Resolution of critical bugs without direct participation in code development. Consulting on implementation of new technologies and solutions. Analysis and recommendations to improve software architecture and development processes.",
         achievements: [
-            "Resolución efectiva de errores críticos en sistemas de producción, reduciendo el tiempo de inactividad.",
-            "Capacitación completa a nuevos programadores sobre la base de código existente y la arquitectura del sistema.",
-            "Enseñanza detallada del funcionamiento de todos los servicios y microservicios de la plataforma.",
-            "Implementación de mejores prácticas que aumentaron la calidad del código y redujeron los bugs recurrentes."
+            "Effective resolution of critical errors in production systems, reducing downtime.",
+            "Complete training of new programmers on existing codebase and system architecture.",
+            "Detailed teaching of the operation of all platform services and microservices.",
+            "Implementation of best practices that increased code quality and reduced recurring bugs."
         ],
         type: "work",
         current: true,
         technologies: ["NodeJs", "TypeScript", "NestJs", "React", "MySQL", "Linux", "Docker", "GitLab CI/CD", "Jira", "Intranet"]
     },
     {
-        title: "Desarrollador Full Stack",
+        title: "Full Stack Developer",
         company: "Plaza Lama",
-        location: "Santo Domingo, República Dominicana (Remoto)",
+        location: "Santo Domingo, Dominican Republic (Remote)",
         period: "2023 - 2025",
         area: "E-commerce",
         description:
-            "Como único programador del equipo, me encargué de la revisión y depuración de código para garantizar calidad y funcionalidad. Desarrollo de bases de datos, aplicaciones y servidores para soportar sitios web desde el backend. Integración de APIs de terceros para mejorar funcionalidades y experiencia del usuario. Optimización de recursos del frontend, reduciendo significativamente los tiempos de carga. Comunicación directa con clientes para revisar avances, recoger feedback y resolver inquietudes. Refactorización de código para modernizar la arquitectura y facilitar el mantenimiento del software.",
+            "As the sole programmer on the team, I was responsible for code review and debugging to ensure quality and functionality. Development of databases, applications, and servers to support websites from the backend. Integration of third-party APIs to improve functionality and user experience. Frontend resource optimization, significantly reducing loading times. Direct communication with clients to review progress, gather feedback, and resolve concerns. Code refactoring to modernize architecture and facilitate software maintenance.",
         achievements: [
-            "Creación de nuevos servicios integrando APIs externas como Uber Eats, PedidosYa, ChatGPT, Shopify, Magento e InstaLeap, ampliando las capacidades de la plataforma.",
-            "Automatización del proceso de carga de productos, precios e inventario en Uber Eats y PedidosYa, transformando un proceso manual en uno completamente automatizado.",
-            "Optimización de servicios existentes, mejorando el rendimiento y la experiencia del usuario.",
-            "Implementación de arquitectura de microservicios y configuración de monorepos para mejorar la escalabilidad y mantenibilidad del código.",
-            "Migración de la pagina web de Shopify a Magento y posteriormente de Magento a InstaLeap, garantizando la continuidad del negocio durante las transiciones.",
-            "Migración del dashboard administrativo de una versión antigua de Angular a React, aumentando su velocidad y efectividad en más de un 200%.",
-            "Implementación de un sistema de gestión de imágenes en el dashboard que permite subir y administrar archivos sin necesidad de hacerlo manualmente, optimizando el flujo de trabajo.",
-            "Implementación de pipelines de CI/CD para automatizar pruebas, integración y despliegue, reduciendo errores y acelerando el ciclo de desarrollo."
+            "Creation of new services integrating external APIs such as Uber Eats, PedidosYa, ChatGPT, Shopify, Magento, and InstaLeap, expanding platform capabilities.",
+            "Automation of product, pricing, and inventory uploading process in Uber Eats and PedidosYa, transforming a manual process into a fully automated one.",
+            "Optimization of existing services, improving performance and user experience.",
+            "Implementation of microservices architecture and monorepo configuration to improve code scalability and maintainability.",
+            "Migration of website from Shopify to Magento and subsequently from Magento to InstaLeap, ensuring business continuity during transitions.",
+            "Migration of administrative dashboard from an old Angular version to React, increasing its speed and effectiveness by more than 200%.",
+            "Implementation of an image management system in the dashboard that allows uploading and managing files without manual intervention, optimizing workflow.",
+            "Implementation of CI/CD pipelines to automate testing, integration, and deployment, reducing errors and accelerating the development cycle."
         ],
         type: "work",
         current: false,
         technologies: ["NodeJs", "TypeScript", "NestJs", "Angular", "React", "MongoDB", "MySQL", "Linux", "PM2", "Docker", "GitLab CI/CD", "Jira", "Intranet"]
     },
     {
-        title: "Pasante Desarrollador Full Stack",
+        title: "Full Stack Developer Intern",
         company: "Plaza Lama",
-        location: "Santo Domingo, República Dominicana",
+        location: "Santo Domingo, Dominican Republic",
         period: "2023 - 2023",
-        area: "Tecnología",
+        area: "Technology",
         description:
-            "Pasantía de 3 meses en el área de tecnología donde aprendí las tecnologías utilizadas en la empresa y brindé apoyo al programador principal. Familiarización con la arquitectura de sistemas y participación en proyectos internos para mejorar la eficiencia operativa.",
+            "3-month internship in the technology area where I learned the technologies used in the company and provided support to the main programmer. Familiarization with system architecture and participation in internal projects to improve operational efficiency.",
         achievements: [
-            "Desarrollo e implementación de un módulo en la intranet para que los empleados puedan consultar las extensiones telefónicas de toda la empresa, mejorando la comunicación interna."
+            "Development and implementation of an intranet module for employees to check phone extensions throughout the company, improving internal communication."
         ],
         type: "work",
         current: false,
@@ -59,15 +59,15 @@ const experiences: Experience[] = [
     {
         title: "Database Administrator",
         company: "C&C Technology Supply, LLC",
-        location: "Santo Domingo, República Dominicana",
+        location: "Santo Domingo, Dominican Republic",
         period: "2020 - 2022",
-        area: "Tecnología de la Información",
+        area: "Information Technology",
         description:
-            "Optimización de procesos de respaldo y recuperación de datos para mejorar la estabilidad del sistema. Administración, soporte y monitoreo proactivo de bases de datos y servidores. Resolución ágil de incidentes críticos en producción, minimizando el tiempo de inactividad y previniendo pérdidas económicas. Implementación de soluciones de monitoreo que permitieron detectar problemas antes de que se volvieran críticos.",
+            "Optimization of data backup and recovery processes to improve system stability. Database and server administration, support, and proactive monitoring. Agile resolution of critical incidents in production, minimizing downtime and preventing economic losses. Implementation of monitoring solutions that enabled problem detection before they became critical.",
         achievements: [
-            "Diseño e implementación de una base de datos centralizada para almacenar y gestionar información de empleados y clientes, mejorando significativamente la organización de datos críticos.",
-            "Desarrollo de un sistema para registrar y monitorear rutinas diarias operativas, permitiendo una mejor planificación y optimización de procesos internos.",
-            "Automatización de reportes basados en los datos almacenados, facilitando la toma de decisiones estratégicas."
+            "Design and implementation of a centralized database to store and manage employee and customer information, significantly improving critical data organization.",
+            "Development of a system to record and monitor daily operational routines, enabling better planning and optimization of internal processes.",
+            "Automation of reports based on stored data, facilitating strategic decision-making."
         ],
         type: "work",
         current: false,
@@ -75,28 +75,28 @@ const experiences: Experience[] = [
     },
     // Education entries
     {
-        title: "Master of Science en Computer Information Systems, IT Project Management Concentration (En curso)",
+        title: "Master of Science in Computer Information Systems, IT Project Management Concentration (In Progress)",
         company: "Boston University",
-        location: "Boston, MA, EE.UU.",
-        period: "2025 - 2026 (Esperado)",
+        location: "Boston, MA, USA",
+        period: "2025 - 2027 (Expected)",
         description:
-            "Concentración en Gestión de Proyectos de Tecnología (IT Project Management). Desarrollando habilidades avanzadas en planificación, ejecución y liderazgo de proyectos tecnológicos a gran escala.",
+            "Concentration in IT Project Management. Developing advanced skills in planning, execution, and leadership of large-scale technology projects.",
         type: "education",
         current: true,
         achievements: [],
     },
     {
-        title: "Ingeniería de Software",
+        title: "Software Engineering",
         company: "Instituto Tecnológico de Santo Domingo (INTEC)",
-        location: "Santo Domingo, República Dominicana",
+        location: "Santo Domingo, Dominican Republic",
         period: "2020 - 2024",
         description:
-            "Formación sólida en desarrollo de software, estructuras de datos, algoritmos y gestión de bases de datos. Estudios complementarios en Computación Científica con Python (2022).",
+            "Solid foundation in software development, data structures, algorithms, and database management. Complementary studies in Scientific Computing with Python (2022).",
         type: "education",
         current: false,
         achievements: [
-            "Desarrollo de un videojuego tower defense como proyecto final, demostrando habilidades en programación de juegos y diseño de sistemas interactivos.",
-            "Premiado como primera promoción en crear un videojuego completo y funcional como proyecto final de grado, estableciendo un precedente para futuros estudiantes.",
+            "Development of a tower defense video game as final project, demonstrating skills in game programming and interactive system design.",
+            "Awarded as first graduating class to create a complete and functional video game as final degree project, setting a precedent for future students.",
         ],
     },
 ]

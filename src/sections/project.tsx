@@ -68,8 +68,8 @@ export default function ProjectsSection() {
 
     // Categories for filter
     const categories = [
-        { id: "all", label: "Todos" },
-        { id: "featured", label: "Destacados" },
+        { id: "all", label: "All" },
+        { id: "featured", label: "Featured" },
         { id: "frontend", label: "Frontend" },
         { id: "backend", label: "Backend" },
         { id: "mobile", label: "Mobile" },
@@ -77,7 +77,7 @@ export default function ProjectsSection() {
 
     return (
         <section
-            id="proyectos"
+            id="projects"
             ref={sectionRef}
             className="py-20 px-6 md:px-10 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden"
             onMouseMove={handleMouseMove}
@@ -128,14 +128,14 @@ export default function ProjectsSection() {
                     className="min-opacity-80"
                 >
                     <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                        Mis{" "}
+                        My{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
-                            Proyectos
+                            Projects
                         </span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-                        Aquí están algunos de mis proyectos recientes. Cada uno fue cuidadosamente elaborado con atención al detalle, rendimiento,
-                        y experiencia de usuario.
+                        Here are some of my recent projects. Each one was carefully crafted with attention to detail, performance,
+                        and user experience.
                     </p>
 
                     {/* Filter Buttons */}

@@ -1,6 +1,6 @@
 import { Code, Wrench, Server, Globe, Book, Cloud } from "lucide-react";
 
-export type SkillCategory = "all" | "frontend" | "backend" | "devops" | "herramientas" | "idiomas" | "otras";
+export type SkillCategory = "all" | "frontend" | "backend" | "devops" | "tools" | "languages" | "other";
 
 export interface Skill {
     name: string;
@@ -10,7 +10,7 @@ export interface Skill {
     yearsExperience?: number
 };
 
-export const SKILL_CATEGORIES: SkillCategory[] = ["frontend", "backend", "devops", "herramientas", "idiomas", "otras"];
+export const SKILL_CATEGORIES: SkillCategory[] = ["frontend", "backend", "devops", "tools", "languages", "other"];
 
 export const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -20,9 +20,9 @@ export const getCategoryIcon = (category: string) => {
             return <Server className="w-full h-full" />
         case "devops":
             return <Cloud className="w-full h-full" />
-        case "herramientas":
+        case "tools":
             return <Wrench className="w-full h-full" />
-        case "idiomas":
+        case "languages":
             return <Globe className="w-full h-full" />
         default:
             return <Book className="w-full h-full" />

@@ -20,7 +20,7 @@ export default function ContactSection() {
 
     return (
         <section
-            id="contacto"
+            id="contact"
             ref={sectionRef}
             className="py-20 px-6 md:px-10 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden"
         >
@@ -65,14 +65,14 @@ export default function ContactSection() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Contactar{" "}
+                            Contact{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
-                                Conmigo
+                                Me
                             </span>
                         </h2>
                         <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-                            No dudes en contactarme a través de cualquiera de estas plataformas. Siempre estoy abierto a discutir nuevos proyectos,
-                            ideas creativas u oportunidades para ser parte de tu visión.
+                            Don&apos;t hesitate to reach out through any of these platforms. I&apos;m always open to discussing new projects,
+                            creative ideas, or opportunities to be part of your vision.
                         </p>
                     </motion.div>
                 </div>
@@ -93,10 +93,10 @@ export default function ContactSection() {
                     className="mt-16 text-center"
                 >
                     <div className="bg-gray-800/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-700/30 shadow-xl max-w-3xl mx-auto">
-                        <h3 className="text-2xl font-bold text-white mb-4">Crea algo increíble juntos</h3>
+                        <h3 className="text-2xl font-bold text-white mb-4">Let&apos;s create something amazing together</h3>
                         <p className="text-gray-300 mb-6">
-                            Ya sea que tengas una pregunta, consulta sobre un proyecto o simplemente quieras saludar, ¡haré todo lo posible por responderte
-                            lo antes posible!
+                            Whether you have a question, project inquiry, or just want to say hello, I&apos;ll do my best to get back to you
+                            as soon as possible!
                         </p>
                         <div className="flex justify-center">
                             <motion.a
@@ -106,7 +106,7 @@ export default function ContactSection() {
                                 className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                             >
                                 <Mail className="w-5 h-5" />
-                                Enviar Email Directo
+                                Send Direct Email
                             </motion.a>
                         </div>
                     </div>
@@ -114,7 +114,7 @@ export default function ContactSection() {
 
                 {/* Response Time Note */}
                 <div className="mt-12 text-center text-gray-400">
-                    <p>Usualmente, respondo dentro de 24 horas</p>
+                    <p>I usually respond within 24 hours</p>
                 </div>
             </motion.div>
         </section>

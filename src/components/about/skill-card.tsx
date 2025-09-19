@@ -61,9 +61,9 @@ const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => {
                                         ? "bg-gradient-to-r from-blue-500 to-purple-500"
                                         : skill.category === "devops"
                                             ? "bg-gradient-to-r from-pink-500 to-orange-500"
-                                            : skill.category === "herramientas"
+                                            : skill.category === "tools"
                                                 ? "bg-gradient-to-r from-green-500 to-blue-500"
-                                                : skill.category === "idiomas"
+                                                : skill.category === "languages"
                                                     ? "bg-gradient-to-r from-red-500 to-yellow-500"
                                                     : "bg-gradient-to-r from-green-500 to-blue-500"
                                     }`}

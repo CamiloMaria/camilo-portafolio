@@ -3,10 +3,10 @@ import { Project } from "@/types/project";
 const projects: Project[] = [
     {
         id: 1,
-        title: "Dashboard E-Commerce Plaza Lama",
-        description: "Dashboard para e-commerce desarrollado desde cero, reemplazando una versión antigua en Angular con mejoras significativas de rendimiento.",
+        title: "Plaza Lama E-Commerce Dashboard",
+        description: "E-commerce dashboard developed from scratch, replacing an old Angular version with significant performance improvements.",
         longDescription:
-            "Este dashboard para e-commerce fue creado completamente desde cero para Plaza Lama, sustituyendo una versión anterior desarrollada en una versión obsoleta de Angular. El proyecto mejoró el rendimiento en más de un 200% y automatizó numerosos procesos. Implementado con las mejores prácticas del framework, cuenta con una interfaz responsiva, gestión de inventario, y utiliza mocks para las llamadas a la API durante el desarrollo. Para loguearte, usa el usuario: admin y la contraseña: admin",
+            "This e-commerce dashboard was created completely from scratch for Plaza Lama, replacing a previous version developed in an obsolete version of Angular. The project improved performance by more than 200% and automated numerous processes. Implemented with framework best practices, it features a responsive interface, inventory management, and uses mocks for API calls during development. To log in, use username: admin and password: admin",
         image: "/projects/frontend-1.webp",
         gallery: [
             "/projects/frontend-1.webp",
@@ -23,10 +23,10 @@ const projects: Project[] = [
     },
     {
         id: 2,
-        title: "Backend Dashboard E-Commerce",
-        description: "API backend desarrollada con NestJS para soportar todas las funcionalidades del dashboard e-commerce de Plaza Lama.",
+        title: "E-Commerce Dashboard Backend",
+        description: "Backend API developed with NestJS to support all functionalities of the Plaza Lama e-commerce dashboard.",
         longDescription:
-            "Este proyecto constituye el backend que conecta toda la lógica del dashboard frontend para Plaza Lama. Desarrollado con las mejores prácticas de NestJS, implementa una arquitectura robusta para gestionar la autenticación, autorización y todas las operaciones de negocio. Utiliza TypeORM como ORM para la gestión de base de datos, JWT para la autenticación, Winston para logging, y está completamente probado con Jest.",
+            "This project constitutes the backend that connects all the frontend dashboard logic for Plaza Lama. Developed with NestJS best practices, it implements a robust architecture to manage authentication, authorization, and all business operations. It uses TypeORM as ORM for database management, JWT for authentication, Winston for logging, and is fully tested with Jest.",
         image: "/projects/backend-1.webp",
         gallery: [
             "/projects/backend-1.webp",
@@ -42,10 +42,10 @@ const projects: Project[] = [
     },
     {
         id: 3,
-        title: "Portafolio Personal",
-        description: "Sitio web de portafolio personal desarrollado con Next.js, TypeScript y Tailwind CSS con animaciones interactivas y diseño responsivo.",
+        title: "Personal Portfolio",
+        description: "Personal portfolio website developed with Next.js, TypeScript and Tailwind CSS with interactive animations and responsive design.",
         longDescription:
-            "Este portafolio personal fue diseñado y desarrollado desde cero utilizando tecnologías modernas para crear una experiencia web atractiva y profesional. Cuenta con secciones para mostrar proyectos, habilidades, experiencia y testimonios. Implementado con animaciones fluidas mediante Framer Motion y un diseño completamente responsivo que se adapta a cualquier dispositivo. El proyecto está estructurado siguiendo las mejores prácticas de desarrollo frontend y demuestra habilidades avanzadas en React y TypeScript.",
+            "This personal portfolio was designed and developed from scratch using modern technologies to create an attractive and professional web experience. It features sections to showcase projects, skills, experience, and testimonials. Implemented with smooth animations using Framer Motion and a fully responsive design that adapts to any device. The project is structured following frontend development best practices and demonstrates advanced skills in React and TypeScript.",
         image: "/projects/portafolio-1.webp",
         gallery: [
             "/projects/portafolio-1.webp",
@@ -66,9 +66,9 @@ const projects: Project[] = [
     {
         id: 4,
         title: "NestJS Enterprise Boilerplate",
-        description: "Un robusto boilerplate para NestJS con prácticas de nivel empresarial implementadas usando principios SOLID, diseñado para iniciar tu desarrollo backend con una base lista para producción.",
+        description: "A robust boilerplate for NestJS with enterprise-level practices implemented using SOLID principles, designed to kickstart your backend development with a production-ready foundation.",
         longDescription:
-            "Este proyecto ofrece una estructura avanzada para aplicaciones NestJS, implementando las mejores prácticas de desarrollo y arquitectura empresarial. El boilerplate incluye configuración de entorno con validación usando Joi, documentación API con Swagger/OpenAPI, versionado de API, formato de respuestas estandarizado, manejo global de excepciones, logging estructurado con nestjs-pino, limitación de tasa de peticiones para protección contra abusos, revisiones de salud para monitoreo de aplicaciones y uso del compilador SWC para un desarrollo más rápido.",
+            "This project offers an advanced structure for NestJS applications, implementing development best practices and enterprise architecture. The boilerplate includes environment configuration with validation using Joi, API documentation with Swagger/OpenAPI, API versioning, standardized response format, global exception handling, structured logging with nestjs-pino, rate limiting for abuse protection, health checks for application monitoring, and SWC compiler usage for faster development.",
         image: "/projects/boilerplate-1.webp",
         gallery: [
             "/projects/boilerplate-1.webp",
@@ -80,17 +80,17 @@ const projects: Project[] = [
             "/projects/boilerplate-7.webp",
             "/projects/boilerplate-8.webp",
         ],
-        tags: ["NestJS", "TypeScript", "SOLID", "API", "Swagger", "Enterprise", "Arquitectura", "Backend"],
+        tags: ["NestJS", "TypeScript", "SOLID", "API", "Swagger", "Enterprise", "Architecture", "Backend"],
         githubUrl: "https://github.com/CamiloMaria/nestjs-enterprise-boilerplate",
         featured: true,
         category: "backend",
     },
     {
         id: 5,
-        title: "BeccaStudio - Portafolio de Fotografía",
-        description: "Sitio web profesional para una fotógrafa, con galería de imágenes, servicios, testimonios y sistema de reservas de sesiones.",
+        title: "BeccaStudio - Photography Portfolio",
+        description: "Professional website for a photographer, with image gallery, services, testimonials and session booking system.",
         longDescription:
-            "Diseñé y desarrollé este sitio web para Rebeca Ramos (Becca), una fotógrafa profesional dominicana. El sitio incluye una galería de portafolio interactiva con categorías filtradas (retratos, comercial, 2x2, sesiones familiares), sección de servicios, testimonios de clientes, página 'sobre mí' y un sistema de reserva de sesiones fotográficas. La web está optimizada para dispositivos móviles con un diseño elegante que refleja el estilo artístico de la fotógrafa, destacando sus trabajos con una navegación intuitiva y rápida carga de imágenes.",
+            "I designed and developed this website for Rebeca Ramos (Becca), a Dominican professional photographer. The site includes an interactive portfolio gallery with filtered categories (portraits, commercial, 2x2, family sessions), services section, client testimonials, 'about me' page, and a photography session booking system. The website is optimized for mobile devices with an elegant design that reflects the photographer's artistic style, highlighting her work with intuitive navigation and fast image loading.",
         image: "/projects/becca-1.webp",
         gallery: [
             "/projects/becca-1.webp",
@@ -100,7 +100,7 @@ const projects: Project[] = [
             "/projects/becca-5.webp",
             "/projects/becca-6.webp",
         ],
-        tags: ["Astro", "Tailwind CSS", "Responsive Design", "Fotografía", "Portafolio"],
+        tags: ["Astro", "Tailwind CSS", "Responsive Design", "Photography", "Portfolio"],
         demoUrl: "https://beccastudio.com/",
         githubUrl: "https://github.com/CamiloMaria/beccastudio",
         featured: true,

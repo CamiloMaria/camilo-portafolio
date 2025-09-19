@@ -3,21 +3,21 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 const bioDetails: BioDetail[] = [
     {
-        title: "Antecedentes",
+        title: "Background",
         content:
-            "Soy Camilo, un Ingeniero de Software apasionado con experiencia en la construcción de aplicaciones modernas. Con más de 4 años de experiencia, me especializo en crear interfaces responsivas y amigables utilizando tecnologías de vanguardia.",
+            "I'm Camilo, a passionate Software Engineer with experience in building modern applications. With over 4 years of experience, I specialize in creating responsive and user-friendly interfaces using cutting-edge technologies.",
         icon: <Sparkles className="w-5 h-5" />,
     },
     {
-        title: "Trayectoria",
+        title: "Journey",
         content:
-            "Mi camino en el desarrollo de software comenzó durante mis años universitarios, donde descubrí mi pasión por crear experiencias digitales que resuelven problemas del mundo real. Desde entonces, he trabajado con varias empresas para ofrecer soluciones web de alta calidad.",
+            "My software development journey began during my university years, where I discovered my passion for creating digital experiences that solve real-world problems. Since then, I've worked with various companies to deliver high-quality web solutions.",
         icon: <ArrowRight className="w-5 h-5" />,
     },
     {
-        title: "Filosofía",
+        title: "Philosophy",
         content:
-            "Creo en escribir código limpio y mantenible, y en mantenerme actualizado con las últimas tendencias y mejores prácticas de la industria. Cuando no estoy programando, puedes encontrarme explorando nuevas tecnologías, contribuyendo a proyectos de código abierto o disfrutando de mis pasatiempos.",
+            "I believe in writing clean and maintainable code, and staying updated with the latest industry trends and best practices. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying my hobbies.",
         icon: <Sparkles className="w-5 h-5" />,
     },
 ]

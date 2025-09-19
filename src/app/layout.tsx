@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Camilo Portafolio",
-  description: "Pagina Web de Portafolio Personal de Camilo Jose Maria Castillo, Ingeniero de Software",
+  title: "Camilo Portfolio",
+  description: "Personal Portfolio Website of Camilo Jose Maria Castillo, Software Engineer",
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

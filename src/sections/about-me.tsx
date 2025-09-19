@@ -15,7 +15,6 @@ import SkillCard from "@/components/about/skill-card"
 import { getCategoryIcon, SKILL_CATEGORIES, SkillCategory } from "@/types/about/skill"
 import { BioTab, ExperienceCard, InterestItem, ProfileCube } from "@/components/about"
 
-
 // Main About Section component
 export default function AboutSection() {
     const sectionRef = useRef<HTMLDivElement>(null)
@@ -39,14 +38,14 @@ export default function AboutSection() {
     const oneSkillPerCategory = SKILL_CATEGORIES.flatMap(category => {
         if (category === "all") return [];
 
-        // Obtener todas las habilidades de esta categoría
+        // Get all skills from this category
         const categorySkills = skills.filter(skill => skill.category === category);
         if (categorySkills.length === 0) return [];
 
-        // Seleccionar habilidades específicas para cada categoría
+        // Select specific skills for each category
         switch (category) {
-            case "idiomas":
-                const englishSkill = categorySkills.find(skill => skill.name.includes("Inglés"));
+            case "languages":
+                const englishSkill = categorySkills.find(skill => skill.name.includes("English") || skill.name.includes("Inglés"));
                 if (englishSkill) return [englishSkill];
                 break;
 
@@ -65,19 +64,19 @@ export default function AboutSection() {
                 if (pm2Skill) return [pm2Skill];
                 break;
 
-            case "herramientas":
+            case "tools":
                 const gitSkill = categorySkills.find(skill => skill.name === "Git");
                 if (gitSkill) return [gitSkill];
                 break;
 
-            case "otras":
+            case "other":
                 const typescriptSkill = categorySkills.find(skill => skill.name === "TypeScript");
                 if (typescriptSkill) return [typescriptSkill];
                 break;
         }
 
-        // Para categorías no especificadas o si no se encuentra la habilidad específica,
-        // usar el nivel más alto como respaldo
+        // For unspecified categories or if the specific skill is not found,
+        // use the highest level as a fallback
         return [categorySkills.sort((a, b) => b.level - a.level)[0]];
     });
 
@@ -97,7 +96,7 @@ export default function AboutSection() {
 
     return (
         <section
-            id="about"
+            id="about-me"
             ref={sectionRef}
             className="py-20 px-6 md:px-10 bg-gradient-to-b from-gray-800 to-gray-900 relative overflow-hidden"
         >
@@ -142,13 +141,13 @@ export default function AboutSection() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
-                            Sobre{" "}
+                            About{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 animate-gradient bg-size-200">
-                                Mí
+                                Me
                             </span>
                         </h2>
                         <p className="text-gray-400 max-w-2xl mx-auto mb-10 text-lg">
-                            Conoce más sobre mí, mi trayectoria y lo que hago.
+                            Learn more about me, my background, and what I do.
                         </p>
                     </motion.div>
                 </div>
@@ -191,7 +190,7 @@ export default function AboutSection() {
                         >
                             <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
                                 <div className="flex items-center justify-between mb-6">
-                                    <h3 className="text-2xl font-bold text-white">Ingeniero de Software & Desarrollador Full Stack</h3>
+                                    <h3 className="text-2xl font-bold text-white">Software Engineer & Full Stack Developer</h3>
                                 </div>
 
                                 {/* Bio Tabs */}
@@ -206,33 +205,33 @@ export default function AboutSection() {
                                 {/* Personal Info Grid */}
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
                                     <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                                        <div className="text-gray-400 text-sm mb-1">Edad</div>
-                                        <div className="text-white font-medium">22</div>
+                                        <div className="text-gray-400 text-sm mb-1">Age</div>
+                                        <div className="text-white font-medium">23</div>
                                     </div>
 
                                     <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                                        <div className="text-gray-400 text-sm mb-1">Ubicación</div>
+                                        <div className="text-gray-400 text-sm mb-1">Location</div>
                                         <div className="text-white font-medium">Providence, RI</div>
                                     </div>
 
                                     <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                                        <div className="text-gray-400 text-sm mb-1">Nacionalidad</div>
-                                        <div className="text-white font-medium">Dominicano</div>
+                                        <div className="text-gray-400 text-sm mb-1">Nationality</div>
+                                        <div className="text-white font-medium">Dominican</div>
                                     </div>
 
                                     <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                                        <div className="text-gray-400 text-sm mb-1">Idiomas</div>
-                                        <div className="text-white font-medium">Español, Inglés</div>
+                                        <div className="text-gray-400 text-sm mb-1">Languages</div>
+                                        <div className="text-white font-medium">Spanish, English</div>
                                     </div>
 
                                     <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
                                         <div className="text-gray-400 text-sm mb-1">Freelance</div>
-                                        <div className="text-white font-medium">Disponible</div>
+                                        <div className="text-white font-medium">Available</div>
                                     </div>
 
                                     <div className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-4 border border-gray-700/30">
-                                        <div className="text-gray-400 text-sm mb-1">Experiencia</div>
-                                        <div className="text-white font-medium">4+ Años</div>
+                                        <div className="text-gray-400 text-sm mb-1">Experience</div>
+                                        <div className="text-white font-medium">+2 Years</div>
                                     </div>
                                 </div>
 
@@ -246,16 +245,16 @@ export default function AboutSection() {
                                         className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.5)]"
                                     >
                                         <Download className="w-4 h-4" />
-                                        Descargar CV
+                                        Download CV
                                     </motion.a>
                                     <motion.a
-                                        href="#contacto"
+                                        href="#contact"
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         className="px-6 py-3 bg-transparent border border-purple-500 rounded-full text-white font-medium flex items-center gap-2 transform transition-all duration-300 hover:bg-purple-500/10"
                                     >
                                         <ExternalLink className="w-4 h-4" />
-                                        Contáctame
+                                        Contact Me
                                     </motion.a>
                                 </div>
                             </div>
@@ -273,7 +272,7 @@ export default function AboutSection() {
                 >
                     <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
                         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-                            <h3 className="text-2xl font-bold text-white">Mis Habilidades</h3>
+                            <h3 className="text-2xl font-bold text-white">My Skills</h3>
 
                             {/* Skill category tabs */}
                             <div className="flex flex-wrap gap-2">
@@ -284,7 +283,7 @@ export default function AboutSection() {
                                         : "bg-gray-700/50 text-gray-400 hover:bg-gray-700"
                                         }`}
                                 >
-                                    Todas las Habilidades
+                                    All Skills
                                 </button>
 
                                 {SKILL_CATEGORIES.map((category) => (
@@ -306,7 +305,7 @@ export default function AboutSection() {
                         {/* Skills grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                             {activeSkillCategory === "all" ? (
-                                // Vista general por categorías
+                                // General view by categories
                                 displayedSkills.map((skill, index) => (
                                     <div key={skill.name} className="flex flex-col">
                                         <div className="mb-2 flex items-center justify-between">
@@ -320,14 +319,14 @@ export default function AboutSection() {
                                                 onClick={() => setActiveSkillCategory(skill.category)}
                                                 className="text-xs text-gray-400 hover:text-purple-400 transition-colors"
                                             >
-                                                Ver todas
+                                                View all
                                             </button>
                                         </div>
                                         <SkillCard skill={skill} index={index} />
                                     </div>
                                 ))
                             ) : (
-                                // Vista normal filtrada por categoría
+                                // Normal view filtered by category
                                 displayedSkills.map((skill, index) => (
                                     <SkillCard key={skill.name} skill={skill} index={index} />
                                 ))
@@ -346,12 +345,12 @@ export default function AboutSection() {
                                     {expandedSkills ? (
                                         <>
                                             <Minus className="w-4 h-4" />
-                                            Mostrar Menos
+                                            Show Less
                                         </>
                                     ) : (
                                         <>
                                             <Plus className="w-4 h-4" />
-                                            Mostrar Más ({filteredSkills.length - 6} más)
+                                            Show More ({filteredSkills.length - 6} more)
                                         </>
                                     )}
                                 </motion.button>
@@ -369,7 +368,7 @@ export default function AboutSection() {
                     className="mb-20"
                 >
                     <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
-                        <h3 className="text-2xl font-bold text-white mb-8">Experiencia & Educación</h3>
+                        <h3 className="text-2xl font-bold text-white mb-8">Experience & Education</h3>
 
                         {/* Work Experience */}
                         <div className="mb-10">
@@ -377,7 +376,7 @@ export default function AboutSection() {
                                 <div className="p-2 rounded-lg bg-purple-500/20 text-purple-300">
                                     <Briefcase className="w-5 h-5" />
                                 </div>
-                                <h4 className="text-xl font-bold text-white">Experiencia Laboral</h4>
+                                <h4 className="text-xl font-bold text-white">Work Experience</h4>
                             </div>
 
                             <div className="space-y-4">
@@ -399,7 +398,7 @@ export default function AboutSection() {
                                 <div className="p-2 rounded-lg bg-blue-500/20 text-blue-300">
                                     <GraduationCap className="w-5 h-5" />
                                 </div>
-                                <h4 className="text-xl font-bold text-white">Educación & Premios</h4>
+                                <h4 className="text-xl font-bold text-white">Education & Awards</h4>
                             </div>
 
                             <div className="space-y-4">
@@ -430,10 +429,10 @@ export default function AboutSection() {
                     className="mb-20"
                 >
                     <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-gray-700/30 p-6 md:p-8 shadow-xl">
-                        <h3 className="text-2xl font-bold text-white mb-6">Mis Intereses</h3>
+                        <h3 className="text-2xl font-bold text-white mb-6">My Interests</h3>
                         <p className="text-gray-400 mb-8 max-w-3xl">
-                            Más allá de la programación y el desarrollo, me apasionan estas actividades que me mantienen inspirado y equilibrado.
-                            Pasa el cursor sobre cada tarjeta para saber más.
+                            Beyond programming and development, I am passionate about these activities that keep me inspired and balanced.
+                            Hover over each card to learn more.
                         </p>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -460,10 +459,10 @@ export default function AboutSection() {
                         <div className="relative">
                             <div className="text-5xl text-purple-500 mb-4">&quot;</div>
                             <p className="text-xl text-gray-300 italic mb-6">
-                                Creo que el gran software no se trata solo de código, sino de crear experiencias que mejoren la vida de las personas.
+                                I believe that great software is not just about code, but about creating experiences that improve people&apos;s lives.
                             </p>
                             <div className="text-white font-bold">Camilo José María Castillo</div>
-                            <div className="text-purple-400 text-sm">Ingeniero de Software</div>
+                            <div className="text-purple-400 text-sm">Software Engineer</div>
                         </div>
                     </div>
                 </motion.div>

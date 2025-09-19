@@ -34,7 +34,7 @@ export default function LoadingAnimation() {
                     transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
                     className="text-purple-300 text-sm"
                 >
-                    Cargando Portfolio
+                    Loading Portfolio
                 </motion.p>
             </motion.div>
         </div>
