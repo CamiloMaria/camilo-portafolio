@@ -106,25 +106,20 @@ const projects: Project[] = [
         featured: true,
         category: "frontend",
     },
-    // {
-    //     id: 6,
-    //     title: "Backend Dashboard E-Commerce",
-    //     description: "API backend desarrollada con NestJS para soportar todas las funcionalidades del dashboard e-commerce de Plaza Lama.",
-    //     longDescription:
-    //         "Este proyecto constituye el backend que conecta toda la lógica del dashboard frontend para Plaza Lama. Desarrollado con las mejores prácticas de NestJS, implementa una arquitectura robusta para gestionar la autenticación, autorización y todas las operaciones de negocio. Utiliza TypeORM como ORM para la gestión de base de datos, JWT para la autenticación, Winston para logging, y está completamente probado con Jest.",
-    //     image: "/projects/backend-1.webp",
-    //     gallery: [
-    //         "/projects/backend-1.webp",
-    //         "/projects/backend-2.webp",
-    //         "/projects/backend-3.webp",
-    //         "/projects/backend-4.webp",
-    //         "/projects/backend-5.webp",
-    //     ],
-    //     tags: ["NestJS", "TypeScript", "Node.js", "TypeORM", "JWT", "RxJS", "Jest"],
-    //     githubUrl: "https://github.com/CamiloMaria/dashboard-backend",
-    //     featured: false,
-    //     category: "backend",
-    // },
+    {
+        id: 6,
+        title: "AI Resume Analyzer",
+        description: "A smart resume analysis tool that helps job seekers optimize their resumes for specific job applications using AI-powered feedback.",
+        longDescription:
+            "AI Resume Analyzer is an intelligent tool designed to help job seekers optimize their resumes using advanced AI technology. The application analyzes resumes against specific job descriptions and provides comprehensive feedback across multiple categories including ATS compatibility, tone and style, content quality, structure and formatting, and skills relevance. Built with React 19 and React Router 7, it features a modern responsive design, drag-and-drop PDF upload, visual preview capabilities, and cloud storage integration. The tool converts resumes to images for AI analysis and provides detailed scoring with actionable improvement suggestions to help users land their dream jobs.",
+        image: "/projects/ai-resume-1.webp",
+        gallery: [
+        ],
+        tags: ["React 19", "React Router 7", "TypeScript", "TailwindCSS", "PDF.js", "Puter.js", "Zustand", "Vite", "AI"],
+        githubUrl: "https://github.com/CamiloMaria/ai-resume-analyzer",
+        featured: true,
+        category: "frontend",
+    },
 ]
 
 export default projects;
