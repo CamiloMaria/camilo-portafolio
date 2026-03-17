@@ -132,7 +132,7 @@ export const Experience: FC = () => {
                 <div
                   className="
                     relative p-5 bg-[#151520] border-2 
-                    transition-all duration-300 hover:scale-[1.02]
+                    transition-all duration-300 hover:scale-[1.05] hover:z-10
                   "
                   style={{
                     borderColor: exp.type === "work" ? "#ff00ff" : "#39ff14",

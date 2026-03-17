@@ -218,6 +218,10 @@ body {
   .scanlines::before {
     display: none;
   }
+
+  .particles {
+    display: none;
+  }
   
   .crt-flicker {
     animation: none;
