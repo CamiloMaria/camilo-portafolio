@@ -21,7 +21,7 @@ export default function Home() {
       <footer className="py-8 px-4 border-t border-[#bf00ff]/30">
         <div className="max-w-6xl mx-auto text-center">
           <p className="font-[family-name:var(--font-terminal)] text-sm text-[#b0b0b0]">
-            © 2024 CAMILO — BUILT WITH <span className="text-[#ff00ff]">♥</span> AND LOTS OF <span className="text-[#39ff14]">☕</span>
+            © 2026 CAMILO — BUILT WITH <span className="text-[#ff00ff]">♥</span> AND LOTS OF <span className="text-[#39ff14]">☕</span>
           </p>
           <p className="font-[family-name:var(--font-pixel)] text-[10px] text-[#bf00ff] mt-2">
             INSERT COIN TO CONTINUE

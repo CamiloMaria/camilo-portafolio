@@ -2,7 +2,7 @@
 
 import { type FC } from "react";
 import { motion, type Variants } from "framer-motion";
-import { socialLinks } from "@/lib/portfolio-data";
+import { personalInfo, socialLinks } from "@/lib/portfolio-data";
 import { useResumeModal } from "@/hooks/use-resume-modal";
 
 const containerVariants: Variants = {
@@ -94,7 +94,7 @@ export const Hero: FC = () => {
           variants={itemVariants}
           className="font-[family-name:var(--font-pixel)] text-3xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight"
         >
-          <span className="text-[#00ffff]">CAMILO</span>
+          <span className="text-[#00ffff]">CAMILO MARIA</span>
         </motion.h1>
 
         {/* Title */}
@@ -102,7 +102,7 @@ export const Hero: FC = () => {
           variants={itemVariants}
           className="font-[family-name:var(--font-terminal)] text-2xl md:text-3xl text-[#39ff14] mb-2"
         >
-          FRONTEND DEVELOPER
+          {personalInfo.title.toUpperCase()}
         </motion.p>
 
         {/* Subtitle */}

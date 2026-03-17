@@ -88,7 +88,7 @@ export const ResumeModal: FC<ResumeModalProps> = ({ isOpen, onClose }) => {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/resume.pdf";
-    link.download = "Camilo-Resume.pdf";
+    link.download = "CamiloMaria-Resume.pdf";
     link.click();
   };
 

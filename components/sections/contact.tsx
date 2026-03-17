@@ -189,7 +189,7 @@ export const Contact: FC = () => {
                     GITHUB
                   </span>
                   <p className="font-[family-name:var(--font-terminal)] text-lg text-white">
-                    @camilodev
+                    @CamiloMaria
                   </p>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export const Contact: FC = () => {
                     LINKEDIN
                   </span>
                   <p className="font-[family-name:var(--font-terminal)] text-lg text-white">
-                    /in/camilo-dev
+                    /in/camilo-maria/
                   </p>
                 </div>
               </div>

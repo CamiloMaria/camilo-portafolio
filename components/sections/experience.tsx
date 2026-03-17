@@ -3,6 +3,7 @@
 import { useMemo, type FC } from "react";
 import { motion, type Variants, useReducedMotion } from "framer-motion";
 import { experiences } from "@/lib/portfolio-data";
+import { useResumeModal } from "@/hooks/use-resume-modal";
 
 const containerVariants = (shouldReduceMotion: boolean): Variants => {
   if (shouldReduceMotion) {
@@ -62,6 +63,7 @@ const headerVariants = (shouldReduceMotion: boolean): Variants => {
 
 export const Experience: FC = () => {
   const shouldReduceMotion = useReducedMotion() ?? false;
+  const { openModal } = useResumeModal();
 
   const containerVars = useMemo(() => containerVariants(shouldReduceMotion), [shouldReduceMotion]);
   const itemVars = useMemo(() => itemVariants(shouldReduceMotion), [shouldReduceMotion]);
@@ -212,10 +214,8 @@ export const Experience: FC = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <a
-            href="/Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={openModal}
             className="
               inline-block neon-button neon-button-purple
               font-[family-name:var(--font-futuristic)] text-sm px-8 py-3
@@ -224,7 +224,7 @@ export const Experience: FC = () => {
             "
           >
             VIEW FULL HISTORY
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>
