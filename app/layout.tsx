@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Press_Start_2P, VT323, Orbitron } from "next/font/google";
 import "./globals.css";
+import { Scanlines } from "@/components/ui/scanlines";
 
 const pressStart2P = Press_Start_2P({
   variable: "--font-pixel",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
+        <Scanlines />
         {children}
       </body>
     </html>
