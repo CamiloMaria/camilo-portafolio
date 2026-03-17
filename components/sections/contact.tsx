@@ -269,7 +269,8 @@ export const Contact: FC = () => {
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                     required
-                    className="w-full px-4 py-3 bg-[#0a0a0f] border-2 border-[#bf00ff]/50 text-white font-[family-name:var(--font-terminal)] text-lg focus:border-[#bf00ff] focus:outline-none focus:box-glow-purple transition-all"
+                    placeholder="Your name"
+                    className="w-full px-4 py-3 bg-[#1a1a25] border-2 border-[#bf00ff]/50 text-white font-[family-name:var(--font-terminal)] text-lg focus:border-[#bf00ff] focus:outline-none focus:box-glow-purple transition-all placeholder:text-[#666]"
                     aria-required="true"
                   />
                 </div>
@@ -286,7 +287,8 @@ export const Contact: FC = () => {
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                     required
-                    className="w-full px-4 py-3 bg-[#0a0a0f] border-2 border-[#bf00ff]/50 text-white font-[family-name:var(--font-terminal)] text-lg focus:border-[#bf00ff] focus:outline-none focus:box-glow-purple transition-all"
+                    placeholder="your@email.com"
+                    className="w-full px-4 py-3 bg-[#1a1a25] border-2 border-[#bf00ff]/50 text-white font-[family-name:var(--font-terminal)] text-lg focus:border-[#bf00ff] focus:outline-none focus:box-glow-purple transition-all placeholder:text-[#666]"
                     aria-required="true"
                   />
                 </div>
@@ -302,7 +304,8 @@ export const Contact: FC = () => {
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     rows={4}
-                    className="w-full px-4 py-3 bg-[#0a0a0f] border-2 border-[#bf00ff]/50 text-white font-[family-name:var(--font-terminal)] text-lg focus:border-[#bf00ff] focus:outline-none focus:box-glow-purple transition-all resize-none"
+                    placeholder="Tell me about your project..."
+                    className="w-full px-4 py-3 bg-[#1a1a25] border-2 border-[#bf00ff]/50 text-white font-[family-name:var(--font-terminal)] text-lg focus:border-[#bf00ff] focus:outline-none focus:box-glow-purple transition-all resize-none placeholder:text-[#666]"
                   />
                 </div>
 
