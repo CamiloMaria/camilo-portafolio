@@ -3,6 +3,7 @@
 import { type FC } from "react";
 import { motion, type Variants } from "framer-motion";
 import { socialLinks } from "@/lib/portfolio-data";
+import { useResumeModal } from "@/hooks/use-resume-modal";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -40,6 +41,8 @@ const insertCoinVariants: Variants = {
 };
 
 export const Hero: FC = () => {
+  const { openModal } = useResumeModal();
+
   const scrollToSkills = () => {
     const skillsSection = document.getElementById("skills");
     if (skillsSection) {
@@ -121,13 +124,12 @@ export const Hero: FC = () => {
           >
             START GAME
           </button>
-          <a
-            href="/Resume.pdf"
-            download
+          <button
+            onClick={openModal}
             className="neon-button neon-button-cyan font-[family-name:var(--font-futuristic)] text-sm md:text-base px-8 py-3 bg-transparent border-2 border-[#00ffff] text-[#00ffff] rounded hover:bg-[#00ffff]/10"
           >
-            DOWNLOAD RESUME
-          </a>
+            VIEW RESUME
+          </button>
         </motion.div>
 
         {/* Social Links */}

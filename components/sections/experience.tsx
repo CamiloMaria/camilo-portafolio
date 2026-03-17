@@ -1,49 +1,91 @@
 "use client";
 
-import { type FC } from "react";
-import { motion, type Variants } from "framer-motion";
+import { useMemo, type FC } from "react";
+import { motion, type Variants, useReducedMotion } from "framer-motion";
 import { experiences } from "@/lib/portfolio-data";
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
+const containerVariants = (shouldReduceMotion: boolean): Variants => {
+  if (shouldReduceMotion) {
+    return {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    };
+  }
+  return {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
     },
-  },
+  };
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.5,
+const itemVariants = (shouldReduceMotion: boolean): Variants => {
+  if (shouldReduceMotion) {
+    return {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    };
+  }
+  return {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+      },
     },
-  },
+  };
+};
+
+const headerVariants = (shouldReduceMotion: boolean): Variants => {
+  if (shouldReduceMotion) {
+    return {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    };
+  }
+  return {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
 };
 
 export const Experience: FC = () => {
+  const shouldReduceMotion = useReducedMotion() ?? false;
+
+  const containerVars = useMemo(() => containerVariants(shouldReduceMotion), [shouldReduceMotion]);
+  const itemVars = useMemo(() => itemVariants(shouldReduceMotion), [shouldReduceMotion]);
+  const headerVars = useMemo(() => headerVariants(shouldReduceMotion), [shouldReduceMotion]);
+
   return (
     <section
       id="experience"
       className="min-h-screen py-20 px-4 relative grid-pattern"
+      aria-labelledby="experience-heading"
     >
       {/* Section header */}
       <div className="max-w-4xl mx-auto mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={headerVars}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center"
         >
           <span className="font-[family-name:var(--font-pixel)] text-xl text-[#00ffff] tracking-widest">
             CONTINUE?
           </span>
-          <h2 className="font-[family-name:var(--font-pixel)] text-2xl md:text-3xl text-white mt-4">
+          <h2 id="experience-heading" className="font-[family-name:var(--font-pixel)] text-2xl md:text-3xl text-white mt-4">
             MY JOURNEY
           </h2>
         </motion.div>
@@ -52,7 +94,7 @@ export const Experience: FC = () => {
       {/* Timeline */}
       <div className="max-w-4xl mx-auto">
         <motion.div
-          variants={containerVariants}
+          variants={containerVars}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -64,7 +106,7 @@ export const Experience: FC = () => {
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.id}
-              variants={itemVariants}
+              variants={itemVars}
               className={`relative flex items-center mb-8 ${
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}

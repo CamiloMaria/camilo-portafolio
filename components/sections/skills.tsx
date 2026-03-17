@@ -1,7 +1,7 @@
 "use client";
 
-import { type FC } from "react";
-import { motion, type Variants } from "framer-motion";
+import { useMemo, type FC } from "react";
+import { motion, type Variants, useReducedMotion } from "framer-motion";
 import { skills, type SkillCategory } from "@/lib/portfolio-data";
 
 const categoryConfig: Record<SkillCategory, { title: string; color: string; borderColor: string; glowClass: string }> = {
@@ -25,28 +25,65 @@ const categoryConfig: Record<SkillCategory, { title: string; color: string; bord
   },
 };
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-    },
-  },
-};
-
 export const Skills: FC = () => {
+  const shouldReduceMotion = useReducedMotion();
+
+  const containerVariants = useMemo<Variants>(() => {
+    if (shouldReduceMotion) {
+      return {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      };
+    }
+    return {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.1,
+        },
+      },
+    };
+  }, [shouldReduceMotion]);
+
+  const cardVariants = useMemo<Variants>(() => {
+    if (shouldReduceMotion) {
+      return {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      };
+    }
+    return {
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.4,
+        },
+      },
+    };
+  }, [shouldReduceMotion]);
+
+  const headerVariants = useMemo<Variants>(() => {
+    if (shouldReduceMotion) {
+      return {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+      };
+    }
+    return {
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+        },
+      },
+    };
+  }, [shouldReduceMotion]);
+  
   const groupedSkills = skills.reduce<Record<SkillCategory, typeof skills>>(
     (acc, skill) => {
       acc[skill.category].push(skill);
@@ -61,20 +98,21 @@ export const Skills: FC = () => {
     <section
       id="skills"
       className="min-h-screen py-20 px-4 relative grid-pattern"
+      aria-labelledby="skills-heading"
     >
       {/* Section header */}
       <div className="max-w-6xl mx-auto mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
           className="text-center"
         >
           <span className="font-[family-name:var(--font-pixel)] text-xl text-[#ff00ff] tracking-widest">
             HIGH SCORES
           </span>
-          <h2 className="font-[family-name:var(--font-pixel)] text-2xl md:text-3xl text-white mt-4">
+          <h2 id="skills-heading" className="font-[family-name:var(--font-pixel)] text-2xl md:text-3xl text-white mt-4">
             MY SKILLS
           </h2>
         </motion.div>
@@ -147,11 +185,11 @@ export const Skills: FC = () => {
                       {/* Progress bar */}
                       <div className="h-2 bg-[#0a0a0f] relative overflow-hidden">
                         <motion.div
-                          initial={{ width: 0 }}
+                          initial={shouldReduceMotion ? { width: `${skill.level}%` } : { width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: true }}
-                          transition={{ duration: 1, delay: index * 0.1 }}
-                          className="h-full pixel-progress"
+                          transition={shouldReduceMotion ? { duration: 0 } : { duration: 1, delay: index * 0.1 }}
+                          className="h-full"
                           style={{
                             background: `repeating-linear-gradient(90deg, ${config.color} 0px, ${config.color} 8px, transparent 8px, transparent 12px)`,
                           }}

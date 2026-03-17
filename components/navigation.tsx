@@ -3,6 +3,7 @@
 import { useState, useEffect, type FC } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useResumeModal } from "@/hooks/use-resume-modal";
 
 interface NavItem {
   label: string;
@@ -26,6 +27,7 @@ export const Navigation: FC = () => {
   const [activeSection, setActiveSection] = useState<string>("hero");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { openModal } = useResumeModal();
 
   // Use passive scroll listener to avoid setState in effect
   useEffect(() => {
@@ -132,13 +134,13 @@ export const Navigation: FC = () => {
                   {social.icon}
                 </a>
               ))}
-              <a
-                href="/Resume.pdf"
-                download
+              <button
+                onClick={openModal}
                 className="font-[family-name:var(--font-futuristic)] text-xs px-4 py-2 border border-[#39ff14] text-[#39ff14] hover:bg-[#39ff14]/10 transition-colors"
+                aria-label="View Resume"
               >
                 RESUME
-              </a>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -199,13 +201,13 @@ export const Navigation: FC = () => {
                   {social.icon}
                 </a>
               ))}
-              <a
-                href="/Resume.pdf"
-                download
+              <button
+                onClick={openModal}
                 className="font-[family-name:var(--font-futuristic)] text-lg px-6 py-3 border-2 border-[#39ff14] text-[#39ff14]"
+                aria-label="View Resume"
               >
                 RESUME
-              </a>
+              </button>
             </motion.div>
           </div>
         </motion.div>

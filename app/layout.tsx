@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Press_Start_2P, VT323, Orbitron } from "next/font/google";
 import "./globals.css";
 import { Scanlines } from "@/components/ui/scanlines";
+import { ModalWrapper } from "@/components/modal-wrapper";
 
 const pressStart2P = Press_Start_2P({
   variable: "--font-pixel",
@@ -40,7 +41,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Scanlines />
-        {children}
+        <ModalWrapper>{children}</ModalWrapper>
       </body>
     </html>
   );
