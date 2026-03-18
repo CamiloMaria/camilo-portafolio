@@ -19,8 +19,8 @@ const navItems: NavItem[] = [
 ];
 
 const socialLinks = [
-  { label: "GitHub", href: "https://github.com", icon: "GH" },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: "IN" },
+  { label: "GitHub", href: "https://github.com/CamiloMaria", icon: "GH" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/camilo-maria", icon: "IN" },
 ];
 
 export const Navigation: FC = () => {
@@ -37,9 +37,9 @@ export const Navigation: FC = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           setIsScrolled(window.scrollY > 50);
-          
+
           const sections = navItems.map((item) => item.href.slice(1));
-          
+
           for (const section of sections.reverse()) {
             const element = document.getElementById(section);
             if (element) {
@@ -57,10 +57,10 @@ export const Navigation: FC = () => {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
+
     // Initial check
     handleScroll();
-    
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -79,16 +79,15 @@ export const Navigation: FC = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled 
-            ? "bg-[#0a0a0f]/95 backdrop-blur-sm border-b border-[#bf00ff]/30" 
-            : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? "bg-[#0a0a0f]/95 backdrop-blur-sm border-b border-[#bf00ff]/30"
+          : "bg-transparent"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link 
+            <Link
               href="#hero"
               onClick={(e) => handleNavClick(e, "#hero")}
               className="font-[family-name:var(--font-pixel)] text-xs md:text-sm text-[#00ffff] hover:text-[#ff00ff] transition-colors"
@@ -103,11 +102,10 @@ export const Navigation: FC = () => {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`font-[family-name:var(--font-pixel)] text-[10px] px-3 py-2 transition-all duration-200 relative ${
-                    activeSection === item.href.slice(1)
-                      ? "text-[#ff00ff]"
-                      : "text-[#b0b0b0] hover:text-[#00ffff]"
-                  }`}
+                  className={`font-[family-name:var(--font-pixel)] text-[10px] px-3 py-2 transition-all duration-200 relative ${activeSection === item.href.slice(1)
+                    ? "text-[#ff00ff]"
+                    : "text-[#b0b0b0] hover:text-[#00ffff]"
+                    }`}
                 >
                   {item.label}
                   {activeSection === item.href.slice(1) && (
@@ -175,11 +173,10 @@ export const Navigation: FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`font-[family-name:var(--font-pixel)] text-lg ${
-                  activeSection === item.href.slice(1)
-                    ? "text-[#ff00ff]"
-                    : "text-[#00ffff]"
-                }`}
+                className={`font-[family-name:var(--font-pixel)] text-lg ${activeSection === item.href.slice(1)
+                  ? "text-[#ff00ff]"
+                  : "text-[#00ffff]"
+                  }`}
               >
                 {item.label}
               </motion.a>
