@@ -11,19 +11,25 @@ export default function Home() {
       <Navigation />
       <main id="main-content" className="relative">
         <Hero />
+        <div className="section-divider" />
         <Skills />
+        <div className="section-divider" />
         <Projects />
+        <div className="section-divider" />
         <Experience />
+        <div className="section-divider" />
         <Contact />
       </main>
-      
+
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-[#bf00ff]/30">
+      <footer className="py-8 px-4 border-t border-neon-purple/30">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="font-[family-name:var(--font-terminal)] text-sm text-[#b0b0b0]">
-            © 2026 CAMILO — BUILT WITH <span className="text-[#ff00ff]">♥</span> AND LOTS OF <span className="text-[#39ff14]">☕</span>
+          <p className="font-terminal text-sm text-foreground-muted">
+            &copy; 2026 CAMILO &mdash; BUILT WITH{" "}
+            <span className="text-neon-magenta">&hearts;</span> AND LOTS OF{" "}
+            <span className="text-neon-green">&#9749;</span>
           </p>
-          <p className="font-[family-name:var(--font-pixel)] text-[10px] text-[#bf00ff] mt-2">
+          <p className="font-pixel text-[10px] text-neon-purple mt-2">
             INSERT COIN TO CONTINUE
           </p>
         </div>

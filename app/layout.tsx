@@ -130,7 +130,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${pressStart2P.variable} ${vt323.variable} ${orbitron.variable} antialiased`}
+        className={`${pressStart2P.variable} ${vt323.variable} ${orbitron.variable} antialiased noise-overlay`}
       >
         <a href="#main-content" className="skip-link">
           Skip to content

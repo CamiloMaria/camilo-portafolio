@@ -5,22 +5,30 @@
   --background: #0a0a0f;
   --foreground: #ffffff;
   --foreground-muted: #b0b0b0;
-  
+
   /* Neon palette */
   --neon-magenta: #ff00ff;
   --neon-cyan: #00ffff;
   --neon-purple: #bf00ff;
   --neon-green: #39ff14;
   --neon-green-alt: #00ff88;
-  
+
   /* Card backgrounds */
   --card-bg: #151520;
   --card-bg-alt: #12121a;
-  
+
   /* Typography */
   --font-pixel: "Press Start 2P", cursive;
   --font-terminal: "VT323", monospace;
   --font-futuristic: "Orbitron", sans-serif;
+
+  /* Z-index scale */
+  --z-particles: 1;
+  --z-content: 10;
+  --z-nav-menu: 40;
+  --z-nav: 50;
+  --z-scanlines: 60;
+  --z-skip: 70;
 }
 
 @theme inline {
@@ -55,7 +63,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: var(--z-scanlines);
   background: repeating-linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.1) 0px,
@@ -78,7 +86,7 @@ body {
 
 /* Neon glow utilities */
 .glow-magenta {
-  text-shadow: 
+  text-shadow:
     0 0 5px var(--neon-magenta),
     0 0 10px var(--neon-magenta),
     0 0 20px var(--neon-magenta),
@@ -86,7 +94,7 @@ body {
 }
 
 .glow-cyan {
-  text-shadow: 
+  text-shadow:
     0 0 5px var(--neon-cyan),
     0 0 10px var(--neon-cyan),
     0 0 20px var(--neon-cyan),
@@ -94,7 +102,7 @@ body {
 }
 
 .glow-purple {
-  text-shadow: 
+  text-shadow:
     0 0 5px var(--neon-purple),
     0 0 10px var(--neon-purple),
     0 0 20px var(--neon-purple),
@@ -102,7 +110,7 @@ body {
 }
 
 .glow-green {
-  text-shadow: 
+  text-shadow:
     0 0 5px var(--neon-green),
     0 0 10px var(--neon-green),
     0 0 20px var(--neon-green),
@@ -111,28 +119,28 @@ body {
 
 /* Box glow for elements */
 .box-glow-magenta {
-  box-shadow: 
+  box-shadow:
     0 0 5px var(--neon-magenta),
     0 0 10px var(--neon-magenta),
     0 0 20px rgba(255, 0, 255, 0.5);
 }
 
 .box-glow-cyan {
-  box-shadow: 
+  box-shadow:
     0 0 5px var(--neon-cyan),
     0 0 10px var(--neon-cyan),
     0 0 20px rgba(0, 255, 255, 0.5);
 }
 
 .box-glow-purple {
-  box-shadow: 
+  box-shadow:
     0 0 5px var(--neon-purple),
     0 0 10px var(--neon-purple),
     0 0 20px rgba(191, 0, 255, 0.5);
 }
 
 .box-glow-green {
-  box-shadow: 
+  box-shadow:
     0 0 5px var(--neon-green),
     0 0 10px var(--neon-green),
     0 0 20px rgba(57, 255, 20, 0.5);
@@ -151,16 +159,16 @@ body {
 
 /* Pulse animation for INSERT COIN text */
 @keyframes pulse-neon {
-  0%, 100% { 
+  0%, 100% {
     opacity: 1;
-    text-shadow: 
+    text-shadow:
       0 0 5px var(--neon-magenta),
       0 0 10px var(--neon-magenta),
       0 0 20px var(--neon-magenta);
   }
-  50% { 
+  50% {
     opacity: 0.7;
-    text-shadow: 
+    text-shadow:
       0 0 2px var(--neon-magenta),
       0 0 5px var(--neon-magenta),
       0 0 10px var(--neon-magenta);
@@ -181,8 +189,13 @@ body {
   transform: scale(1.05);
 }
 
+.neon-button:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
 .neon-button-magenta:hover {
-  box-shadow: 
+  box-shadow:
     0 0 5px var(--neon-magenta),
     0 0 10px var(--neon-magenta),
     0 0 20px var(--neon-magenta),
@@ -190,19 +203,64 @@ body {
 }
 
 .neon-button-cyan:hover {
-  box-shadow: 
+  box-shadow:
     0 0 5px var(--neon-cyan),
     0 0 10px var(--neon-cyan),
     0 0 20px var(--neon-cyan),
     0 0 40px var(--neon-cyan);
 }
 
+.neon-button-purple:hover {
+  box-shadow:
+    0 0 5px var(--neon-purple),
+    0 0 10px var(--neon-purple),
+    0 0 20px var(--neon-purple),
+    0 0 40px var(--neon-purple);
+}
+
+.neon-button-green:hover {
+  box-shadow:
+    0 0 5px var(--neon-green),
+    0 0 10px var(--neon-green),
+    0 0 20px var(--neon-green),
+    0 0 40px var(--neon-green);
+}
+
 /* Grid background pattern */
 .grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 50px 50px;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--neon-purple) 20%,
+    var(--neon-magenta) 50%,
+    var(--neon-purple) 80%,
+    transparent 100%
+  );
+  opacity: 0.3;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* Noise grain overlay */
+.noise-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-scanlines);
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 /* Reduced motion support */
@@ -214,7 +272,7 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .scanlines::before {
     display: none;
   }
@@ -222,11 +280,11 @@ body {
   .particles {
     display: none;
   }
-  
+
   .crt-flicker {
     animation: none;
   }
-  
+
   .pulse-neon {
     animation: none;
     opacity: 1;
@@ -265,7 +323,7 @@ body {
   background: var(--neon-cyan);
   color: var(--background);
   padding: 8px 16px;
-  z-index: 10000;
+  z-index: var(--z-skip);
   transition: top 0.3s;
 }
 

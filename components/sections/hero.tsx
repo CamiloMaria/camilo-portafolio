@@ -53,19 +53,19 @@ export const Hero: FC = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative grid-pattern overflow-hidden"
+      className="min-h-dvh flex items-center justify-center relative grid-pattern overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Corner decorations */}
-        <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-[#ff00ff]/30" />
-        <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-[#00ffff]/30" />
-        <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-[#39ff14]/30" />
-        <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-[#bf00ff]/30" />
-        
+        <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-neon-magenta/30" />
+        <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-neon-cyan/30" />
+        <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-neon-green/30" />
+        <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-neon-purple/30" />
+
         {/* Animated scanline effect */}
         <motion.div
-          className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-transparent via-[#ff00ff]/20 to-transparent"
+          className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-b from-transparent via-neon-magenta/20 to-transparent"
           animate={{ y: ["-10%", "110%"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
         />
@@ -83,7 +83,7 @@ export const Hero: FC = () => {
             variants={insertCoinVariants}
             initial="initial"
             animate="pulse"
-            className="font-[family-name:var(--font-pixel)] text-lg md:text-xl text-[#ff00ff] tracking-widest"
+            className="font-pixel text-lg md:text-xl text-neon-magenta tracking-widest"
           >
             INSERT COIN
           </motion.span>
@@ -92,15 +92,16 @@ export const Hero: FC = () => {
         {/* Name */}
         <motion.h1
           variants={itemVariants}
-          className="font-[family-name:var(--font-pixel)] text-3xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight"
+          className="font-pixel text-3xl md:text-5xl lg:text-6xl text-white mb-4 leading-tight"
+          style={{ textWrap: "balance" }}
         >
-          <span className="text-[#00ffff]">CAMILO MARIA</span>
+          <span className="text-neon-cyan">CAMILO MARIA</span>
         </motion.h1>
 
         {/* Title */}
         <motion.p
           variants={itemVariants}
-          className="font-[family-name:var(--font-terminal)] text-2xl md:text-3xl text-[#39ff14] mb-2"
+          className="font-terminal text-2xl md:text-3xl text-neon-green mb-2"
         >
           {personalInfo.title.toUpperCase()}
         </motion.p>
@@ -108,7 +109,8 @@ export const Hero: FC = () => {
         {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="font-[family-name:var(--font-terminal)] text-lg md:text-xl text-[#b0b0b0] mb-12 max-w-2xl mx-auto"
+          className="font-terminal text-lg md:text-xl text-foreground-muted mb-12 max-w-2xl mx-auto"
+          style={{ textWrap: "balance" }}
         >
           Building immersive digital experiences with code and creativity
         </motion.p>
@@ -120,13 +122,13 @@ export const Hero: FC = () => {
         >
           <button
             onClick={scrollToSkills}
-            className="neon-button neon-button-magenta font-[family-name:var(--font-futuristic)] text-sm md:text-base px-8 py-3 bg-[#ff00ff]/10 border-2 border-[#ff00ff] text-[#ff00ff] rounded"
+            className="neon-button neon-button-magenta font-futuristic text-sm md:text-base px-8 py-3 bg-neon-magenta/10 border-2 border-neon-magenta text-neon-magenta rounded"
           >
             START GAME
           </button>
           <button
             onClick={openModal}
-            className="neon-button neon-button-cyan font-[family-name:var(--font-futuristic)] text-sm md:text-base px-8 py-3 bg-transparent border-2 border-[#00ffff] text-[#00ffff] rounded hover:bg-[#00ffff]/10"
+            className="neon-button neon-button-cyan font-futuristic text-sm md:text-base px-8 py-3 bg-transparent border-2 border-neon-cyan text-neon-cyan rounded hover:bg-neon-cyan/10"
           >
             VIEW RESUME
           </button>
@@ -138,7 +140,7 @@ export const Hero: FC = () => {
             href={socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 text-[#b0b0b0] hover:text-[#00ffff] transition-colors"
+            className="group flex items-center gap-2 text-foreground-muted hover:text-neon-cyan transition-colors"
             aria-label="GitHub"
           >
             <svg
@@ -152,14 +154,14 @@ export const Hero: FC = () => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="font-[family-name:var(--font-terminal)] text-lg">GitHub</span>
+            <span className="font-terminal text-lg">GitHub</span>
           </a>
 
           <a
             href={socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 text-[#b0b0b0] hover:text-[#00ffff] transition-colors"
+            className="group flex items-center gap-2 text-foreground-muted hover:text-neon-cyan transition-colors"
             aria-label="LinkedIn"
           >
             <svg
@@ -169,12 +171,12 @@ export const Hero: FC = () => {
             >
               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
             </svg>
-            <span className="font-[family-name:var(--font-terminal)] text-lg">LinkedIn</span>
+            <span className="font-terminal text-lg">LinkedIn</span>
           </a>
 
           <a
             href={`mailto:${socialLinks.email}`}
-            className="group flex items-center gap-2 text-[#b0b0b0] hover:text-[#00ffff] transition-colors"
+            className="group flex items-center gap-2 text-foreground-muted hover:text-neon-cyan transition-colors"
             aria-label="Email"
           >
             <svg
@@ -190,7 +192,7 @@ export const Hero: FC = () => {
                 d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
               />
             </svg>
-            <span className="font-[family-name:var(--font-terminal)] text-lg">Email</span>
+            <span className="font-terminal text-lg">Email</span>
           </a>
         </motion.div>
       </motion.div>
@@ -205,9 +207,9 @@ export const Hero: FC = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center text-[#bf00ff]"
+          className="flex flex-col items-center text-neon-purple"
         >
-          <span className="font-[family-name:var(--font-terminal)] text-sm mb-2">SCROLL</span>
+          <span className="font-terminal text-sm mb-2">SCROLL</span>
           <svg
             className="w-6 h-6"
             fill="none"

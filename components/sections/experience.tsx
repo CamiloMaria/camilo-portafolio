@@ -1,78 +1,36 @@
 "use client";
 
 import { useMemo, type FC } from "react";
-import { motion, type Variants, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { experiences } from "@/lib/portfolio-data";
 import { useResumeModal } from "@/hooks/use-resume-modal";
-
-const containerVariants = (shouldReduceMotion: boolean): Variants => {
-  if (shouldReduceMotion) {
-    return {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1 },
-    };
-  }
-  return {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-};
-
-const itemVariants = (shouldReduceMotion: boolean): Variants => {
-  if (shouldReduceMotion) {
-    return {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1 },
-    };
-  }
-  return {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-};
-
-const headerVariants = (shouldReduceMotion: boolean): Variants => {
-  if (shouldReduceMotion) {
-    return {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1 },
-    };
-  }
-  return {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-      },
-    },
-  };
-};
+import {
+  containerVariants,
+  itemVariants,
+  headerVariants,
+} from "@/lib/animation-variants";
 
 export const Experience: FC = () => {
   const shouldReduceMotion = useReducedMotion() ?? false;
   const { openModal } = useResumeModal();
 
-  const containerVars = useMemo(() => containerVariants(shouldReduceMotion), [shouldReduceMotion]);
-  const itemVars = useMemo(() => itemVariants(shouldReduceMotion), [shouldReduceMotion]);
-  const headerVars = useMemo(() => headerVariants(shouldReduceMotion), [shouldReduceMotion]);
+  const containerVars = useMemo(
+    () => containerVariants(shouldReduceMotion, 0.15),
+    [shouldReduceMotion]
+  );
+  const itemVars = useMemo(
+    () => itemVariants(shouldReduceMotion, { direction: "x", distance: -20 }),
+    [shouldReduceMotion]
+  );
+  const headerVars = useMemo(
+    () => headerVariants(shouldReduceMotion),
+    [shouldReduceMotion]
+  );
 
   return (
     <section
       id="experience"
-      className="min-h-screen py-20 px-4 relative grid-pattern"
+      className="min-h-dvh py-20 px-4 relative grid-pattern"
       aria-labelledby="experience-heading"
     >
       {/* Section header */}
@@ -84,10 +42,13 @@ export const Experience: FC = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <span className="font-[family-name:var(--font-pixel)] text-xl text-[#00ffff] tracking-widest">
+          <span className="font-pixel text-xl text-neon-cyan tracking-widest">
             CONTINUE?
           </span>
-          <h2 id="experience-heading" className="font-[family-name:var(--font-pixel)] text-2xl md:text-3xl text-white mt-4">
+          <h2
+            id="experience-heading"
+            className="font-pixel text-2xl md:text-3xl text-white mt-4"
+          >
             MY JOURNEY
           </h2>
         </motion.div>
@@ -103,107 +64,100 @@ export const Experience: FC = () => {
           className="relative"
         >
           {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#ff00ff] via-[#bf00ff] to-[#00ffff]" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-neon-magenta via-neon-purple to-neon-cyan" />
 
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.id}
-              variants={itemVars}
-              className={`relative flex items-center mb-8 ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              }`}
-            >
-              {/* Timeline dot */}
-              <div
-                className={`absolute left-4 md:left-1/2 w-4 h-4 rounded-full transform -translate-x-1/2 z-10 ${
-                  exp.type === "work" 
-                    ? "bg-[#ff00ff] shadow-[0_0_10px_#ff00ff]" 
-                    : "bg-[#39ff14] shadow-[0_0_10px_#39ff14]"
+          {experiences.map((exp, index) => {
+            const isWork = exp.type === "work";
+            const accentColor = isWork
+              ? "var(--neon-magenta)"
+              : "var(--neon-green)";
+
+            return (
+              <motion.div
+                key={exp.id}
+                variants={itemVars}
+                className={`relative flex items-center mb-8 ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
-              />
-
-              {/* Card */}
-              <div
-                className={`
-                  ml-12 md:ml-0 md:w-[45%] 
-                  ${index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}
-                `}
               >
+                {/* Timeline dot */}
                 <div
-                  className="
-                    relative p-5 bg-[#151520] border-2 
-                    transition-all duration-300 hover:scale-[1.05] hover:z-10
-                  "
+                  className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full transform -translate-x-1/2 z-10"
                   style={{
-                    borderColor: exp.type === "work" ? "#ff00ff" : "#39ff14",
-                    boxShadow: `0 0 10px ${exp.type === "work" ? "rgba(255, 0, 255, 0.2)" : "rgba(57, 255, 20, 0.2)"}`,
+                    backgroundColor: accentColor,
+                    boxShadow: `0 0 10px ${accentColor}`,
                   }}
+                />
+
+                {/* Card */}
+                <div
+                  className={`ml-12 md:ml-0 md:w-[45%] ${
+                    index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
+                  }`}
                 >
-                  {/* Type badge */}
-                  <div className="absolute -top-3 right-4">
-                    <span
-                      className="font-[family-name:var(--font-pixel)] text-[10px] px-2 py-1 bg-[#0a0a0f]"
-                      style={{
-                        color: exp.type === "work" ? "#ff00ff" : "#39ff14",
-                        border: `1px solid ${exp.type === "work" ? "#ff00ff" : "#39ff14"}`,
-                      }}
-                    >
-                      {exp.type === "work" ? "WORK" : "EDUCATION"}
-                    </span>
-                  </div>
-
-                  {/* Role */}
-                  <h3 className="font-[family-name:var(--font-pixel)] text-xs text-white mb-1 pr-16">
-                    {exp.role}
-                  </h3>
-
-                  {/* Company/School */}
-                  <p
-                    className="font-[family-name:var(--font-terminal)] text-base mb-1"
+                  <div
+                    className="relative p-5 bg-card-bg border transition-all duration-300 hover:scale-[1.03] hover:z-10"
                     style={{
-                      color: exp.type === "work" ? "#00ffff" : "#39ff14",
+                      borderColor: `color-mix(in srgb, ${accentColor} 40%, transparent)`,
+                      boxShadow: `0 0 10px color-mix(in srgb, ${accentColor} 15%, transparent)`,
                     }}
                   >
-                    {exp.company}
-                  </p>
-
-                  {/* Duration & Location */}
-                  <div className="flex flex-wrap gap-3 mb-3">
-                    <span className="font-[family-name:var(--font-terminal)] text-sm text-[#b0b0b0]">
-                      {exp.duration}
-                    </span>
-                    <span className="font-[family-name:var(--font-terminal)] text-sm text-[#b0b0b0]">
-                      {exp.location}
-                    </span>
-                  </div>
-
-                  {/* Highlights */}
-                  <ul className="space-y-1">
-                    {exp.highlights.map((highlight, idx) => (
-                      <li
-                        key={idx}
-                        className="font-[family-name:var(--font-terminal)] text-sm text-[#b0b0b0] flex items-start gap-2"
+                    {/* Type badge */}
+                    <div className="absolute -top-3 right-4">
+                      <span
+                        className="font-pixel text-[10px] px-2 py-1 bg-background"
+                        style={{
+                          color: accentColor,
+                          border: `1px solid ${accentColor}`,
+                        }}
                       >
-                        <span
-                          className="mt-1.5 w-1.5 h-1.5 flex-shrink-0"
-                          style={{
-                            backgroundColor: exp.type === "work" ? "#ff00ff" : "#39ff14",
-                          }}
-                        />
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
+                        {isWork ? "WORK" : "EDUCATION"}
+                      </span>
+                    </div>
 
-                  {/* Decorative corners */}
-                  <div className="absolute top-2 left-2 w-2 h-2 border-l border-t" style={{ borderColor: exp.type === "work" ? "#ff00ff" : "#39ff14" }} />
-                  <div className="absolute top-2 right-2 w-2 h-2 border-r border-t" style={{ borderColor: exp.type === "work" ? "#ff00ff" : "#39ff14" }} />
-                  <div className="absolute bottom-2 left-2 w-2 h-2 border-l border-b" style={{ borderColor: exp.type === "work" ? "#ff00ff" : "#39ff14" }} />
-                  <div className="absolute bottom-2 right-2 w-2 h-2 border-r border-b" style={{ borderColor: exp.type === "work" ? "#ff00ff" : "#39ff14" }} />
+                    {/* Role */}
+                    <h3 className="font-pixel text-xs text-white mb-1 pr-16">
+                      {exp.role}
+                    </h3>
+
+                    {/* Company/School */}
+                    <p
+                      className="font-terminal text-base mb-1"
+                      style={{ color: isWork ? "var(--neon-cyan)" : "var(--neon-green)" }}
+                    >
+                      {exp.company}
+                    </p>
+
+                    {/* Duration & Location */}
+                    <div className="flex flex-wrap gap-3 mb-3">
+                      <span className="font-terminal text-sm text-foreground-muted">
+                        {exp.duration}
+                      </span>
+                      <span className="font-terminal text-sm text-foreground-muted">
+                        {exp.location}
+                      </span>
+                    </div>
+
+                    {/* Highlights */}
+                    <ul className="space-y-1">
+                      {exp.highlights.map((highlight, idx) => (
+                        <li
+                          key={idx}
+                          className="font-terminal text-sm text-foreground-muted flex items-start gap-2"
+                        >
+                          <span
+                            className="mt-1.5 w-1.5 h-1.5 flex-shrink-0"
+                            style={{ backgroundColor: accentColor }}
+                          />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* View Full Resume CTA */}
@@ -216,12 +170,7 @@ export const Experience: FC = () => {
         >
           <button
             onClick={openModal}
-            className="
-              inline-block neon-button neon-button-purple
-              font-[family-name:var(--font-futuristic)] text-sm px-8 py-3
-              bg-[#bf00ff]/10 border-2 border-[#bf00ff] text-[#bf00ff]
-              hover:bg-[#bf00ff]/20 transition-all
-            "
+            className="neon-button neon-button-purple font-futuristic text-sm px-8 py-3 bg-neon-purple/10 border-2 border-neon-purple text-neon-purple hover:bg-neon-purple/20 transition-all"
           >
             VIEW FULL HISTORY
           </button>
