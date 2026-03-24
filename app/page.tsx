@@ -1,8 +1,10 @@
 import { Navigation } from "@/components/navigation";
 import { Hero } from "@/components/sections/hero";
+import { About } from "@/components/sections/about";
 import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/sections/projects";
 import { Experience } from "@/components/sections/experience";
+import { Achievements } from "@/components/sections/achievements";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -12,11 +14,15 @@ export default function Home() {
       <main id="main-content" className="relative">
         <Hero />
         <div className="section-divider" />
+        <About />
+        <div className="section-divider" />
         <Skills />
         <div className="section-divider" />
         <Projects />
         <div className="section-divider" />
         <Experience />
+        <div className="section-divider" />
+        <Achievements />
         <div className="section-divider" />
         <Contact />
       </main>

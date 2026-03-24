@@ -5,6 +5,7 @@ import { Scanlines } from "@/components/ui/scanlines";
 import { Particles } from "@/components/ui/particles";
 import { ModalWrapper } from "@/components/modal-wrapper";
 import { socialLinks } from "@/lib/portfolio-data";
+import { Analytics } from "@vercel/analytics/react";
 
 const pressStart2P = Press_Start_2P({
   variable: "--font-pixel",
@@ -58,14 +59,6 @@ export const metadata: Metadata = {
     title: "Camilo Maria | Full Stack Developer",
     description:
       "Software Engineer with 2+ years building applications. Full Stack Developer specializing in React, TypeScript, and Node.js.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Camilo Maria Portfolio",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -73,7 +66,6 @@ export const metadata: Metadata = {
     creator: "@CamiloMaria",
     title: "Camilo Maria | Full Stack Developer",
     description: "Software Engineer with 2+ years building applications.",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -85,10 +77,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  icons: {
-    icon: "/icon.svg",
-    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -138,6 +126,7 @@ export default function RootLayout({
         <Particles />
         <Scanlines />
         <ModalWrapper>{children}</ModalWrapper>
+        <Analytics />
       </body>
     </html>
   );
