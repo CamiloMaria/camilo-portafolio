@@ -101,48 +101,42 @@ export const About: FC = () => {
 
               <div className="p-5">
                 {/* Avatar frame */}
-                <div className="relative w-32 h-32 mx-auto mb-5">
+                <div className="relative w-64 h-64 mx-auto mb-5 group/avatar">
+                  {/* Animated glow behind the frame */}
                   <div
-                    className="w-full h-full border-2 border-neon-green/50 flex items-center justify-center"
+                    className="absolute -inset-[2px] opacity-60 blur-sm group-hover/avatar:opacity-90 transition-opacity duration-500"
                     style={{
                       background:
-                        "linear-gradient(135deg, rgba(57,255,20,0.08) 0%, rgba(0,255,255,0.05) 100%)",
-                      boxShadow: "inset 0 0 30px rgba(57,255,20,0.1)",
+                        "linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta), var(--neon-purple), var(--neon-cyan))",
+                    }}
+                  />
+                  {/* Dark inner container */}
+                  <div
+                    className="relative w-full h-full border border-white/10 overflow-hidden"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(10,10,20,0.98) 100%)",
                     }}
                   >
-                    {/* Pixel art character placeholder */}
-                    <div className="grid grid-cols-5 gap-0.5">
-                      {/* Simple pixel face */}
-                      {[
-                        0,0,1,0,0,
-                        0,1,1,1,0,
-                        1,0,1,0,1,
-                        1,1,1,1,1,
-                        0,1,0,1,0,
-                        0,1,1,1,0,
-                        1,1,0,1,1,
-                        0,1,0,1,0,
-                      ].map((pixel, i) => (
-                        <div
-                          key={i}
-                          className="w-3 h-3"
-                          style={{
-                            backgroundColor: pixel
-                              ? "var(--neon-green)"
-                              : "transparent",
-                            boxShadow: pixel
-                              ? "0 0 4px rgba(57,255,20,0.5)"
-                              : "none",
-                          }}
-                        />
-                      ))}
-                    </div>
+                    <img
+                      src="/camilo-profile.webp"
+                      alt="Foto de perfil de Camilo"
+                      className="w-full h-full object-contain"
+                    />
+                    {/* Subtle scanline overlay */}
+                    <div
+                      className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                      style={{
+                        backgroundImage:
+                          "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px)",
+                      }}
+                    />
                   </div>
-                  {/* Corner accents on avatar */}
-                  <div className="absolute -top-1 -left-1 w-3 h-3 border-l-2 border-t-2 border-neon-green" />
-                  <div className="absolute -top-1 -right-1 w-3 h-3 border-r-2 border-t-2 border-neon-green" />
-                  <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l-2 border-b-2 border-neon-green" />
-                  <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r-2 border-b-2 border-neon-green" />
+                  {/* Corner accents — multi-color */}
+                  <div className="absolute -top-1 -left-1 w-3 h-3 border-l-2 border-t-2 border-neon-cyan" />
+                  <div className="absolute -top-1 -right-1 w-3 h-3 border-r-2 border-t-2 border-neon-magenta" />
+                  <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l-2 border-b-2 border-neon-purple" />
+                  <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r-2 border-b-2 border-neon-cyan" />
                 </div>
 
                 {/* Name */}
@@ -175,7 +169,7 @@ export const About: FC = () => {
                       backgroundColor: "rgba(255,0,255,0.08)",
                     }}
                   >
-                    LVL 25
+                    LVL 24
                   </span>
                 </div>
 
