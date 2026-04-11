@@ -13,6 +13,7 @@ export interface Project {
   techStack: string[];
   demoUrl?: string;
   sourceUrl?: string;
+  image?: string;
 }
 
 export interface Experience {
@@ -64,6 +65,24 @@ export const skills: Skill[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    id: "7",
+    title: "NotifyHub",
+    description:
+      "Multi-channel notification SaaS with a live sandbox. Send a notification and watch it flow through BullMQ queues, retry under chaos injection, and arrive in real time via WebSockets.",
+    techStack: [
+      "NestJS",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "Redis",
+      "BullMQ",
+      "Socket.io",
+      "Tailwind CSS",
+    ],
+    sourceUrl: "https://github.com/CamiloMaria/notifyhub",
+    image: "/notifyhub.png",
+  },
   {
     id: "1",
     title: "Plaza Lama E-Commerce Dashboard",

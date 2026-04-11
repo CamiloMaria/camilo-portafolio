@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, type FC } from "react";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { projects } from "@/lib/portfolio-data";
 import {
@@ -22,6 +23,10 @@ const techIconMap: Record<string, { bg: string; text: string }> = {
   WebSocket: { bg: "#000000", text: "#ffffff" },
   Prisma: { bg: "#2D3748", text: "#ffffff" },
   NextAuth: { bg: "#000000", text: "#ffffff" },
+  NestJS: { bg: "#E0234E", text: "#ffffff" },
+  Redis: { bg: "#DC382D", text: "#ffffff" },
+  BullMQ: { bg: "#E84D3D", text: "#ffffff" },
+  "Socket.io": { bg: "#010101", text: "#ffffff" },
   Figma: { bg: "#F24E1E", text: "#ffffff" },
   Testing: { bg: "#C21325", text: "#ffffff" },
   Git: { bg: "#F05032", text: "#ffffff" },
@@ -112,28 +117,40 @@ export const Projects: FC = () => {
                   boxShadow: `0 0 5px ${borderColor}30`,
                 }}
               >
-                {/* Thumbnail with generative gradient */}
+                {/* Thumbnail with project image or generative gradient */}
                 <div
                   className="aspect-video relative overflow-hidden flex items-center justify-center"
-                  style={{ background: gradient }}
+                  style={project.image ? undefined : { background: gradient }}
                 >
-                  {/* Grid lines inside thumbnail */}
-                  <div
-                    className="absolute inset-0 opacity-20"
-                    style={{
-                      backgroundImage: `
-                        linear-gradient(${borderColor}15 1px, transparent 1px),
-                        linear-gradient(90deg, ${borderColor}15 1px, transparent 1px)
-                      `,
-                      backgroundSize: "30px 30px",
-                    }}
-                  />
-                  <span
-                    className="font-pixel text-4xl opacity-30 relative z-10"
-                    style={{ color: borderColor }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} screenshot`}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <>
+                      {/* Grid lines inside thumbnail */}
+                      <div
+                        className="absolute inset-0 opacity-20"
+                        style={{
+                          backgroundImage: `
+                            linear-gradient(${borderColor}15 1px, transparent 1px),
+                            linear-gradient(90deg, ${borderColor}15 1px, transparent 1px)
+                          `,
+                          backgroundSize: "30px 30px",
+                        }}
+                      />
+                      <span
+                        className="font-pixel text-4xl opacity-30 relative z-10"
+                        style={{ color: borderColor }}
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </>
+                  )}
                 </div>
 
                 {/* Info panel */}
