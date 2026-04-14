@@ -81,6 +81,7 @@ export const projects: Project[] = [
       "Tailwind CSS",
     ],
     sourceUrl: "https://github.com/CamiloMaria/notifyhub",
+    demoUrl: "https://notifyhub-nine.vercel.app",
     image: "/notifyhub.png",
   },
   {
@@ -132,23 +133,7 @@ export const projects: Project[] = [
     demoUrl: "https://camilo-portafolio.vercel.app/",
     sourceUrl: "https://github.com/CamiloMaria/camilo-portafolio",
   },
-  {
-    id: "4",
-    title: "NestJS Enterprise Boilerplate",
-    description:
-      "A robust boilerplate for NestJS with enterprise-level practices implemented using SOLID principles, designed to kickstart your backend development with a production-ready foundation.",
-    techStack: [
-      "NestJS",
-      "TypeScript",
-      "SOLID",
-      "API",
-      "Swagger",
-      "Enterprise",
-      "Architecture",
-      "Backend",
-    ],
-    sourceUrl: "https://github.com/CamiloMaria/nestjs-enterprise-boilerplate",
-  },
+
   {
     id: "5",
     title: "BeccaStudio - Photography Portfolio",
