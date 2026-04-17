@@ -100,6 +100,7 @@ export const projects: Project[] = [
     ],
     demoUrl: "https://cm-dashboard-frontend.netlify.app/",
     sourceUrl: "https://github.com/CamiloMaria/dashboard-frontend",
+    image: "/plaza-lama-dashboard.png",
   },
   {
     id: "8",
@@ -135,6 +136,7 @@ export const projects: Project[] = [
     ],
     demoUrl: "https://camilo-portafolio.vercel.app/",
     sourceUrl: "https://github.com/CamiloMaria/camilo-portafolio",
+    image: "/personal-portfolio.png",
   },
 
   {
@@ -151,6 +153,7 @@ export const projects: Project[] = [
     ],
     demoUrl: "https://beccastudio.com/",
     sourceUrl: "https://github.com/CamiloMaria/beccastudio",
+    image: "/beccastudio.png",
   },
   {
     id: "6",
